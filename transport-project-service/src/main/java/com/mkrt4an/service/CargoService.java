@@ -12,11 +12,11 @@ import java.util.List;
 public class CargoService {
 
     //Find all cargo
-    public List<CargoEntity> findAllCargo (){
+    public List<CargoEntity> findAllCargo() {
         List<CargoEntity> cargoList = new ArrayList<CargoEntity>();
-            for(CargoEntity cg : cargoList){
-                cargoList.add(cg);
-            }
+        for (CargoEntity cg : cargoList) {
+            cargoList.add(cg);
+        }
 
         return cargoList;
     }

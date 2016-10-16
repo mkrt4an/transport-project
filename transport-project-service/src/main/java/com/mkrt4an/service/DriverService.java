@@ -11,7 +11,7 @@ import java.util.List;
 public class DriverService {
 
     // Find all drivers
-    public List<DriverEntity> findAllDrivers (){
+    public List<DriverEntity> findAllDrivers() {
         return null;
     }
 

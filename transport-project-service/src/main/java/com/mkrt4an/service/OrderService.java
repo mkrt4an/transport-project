@@ -13,9 +13,9 @@ import java.util.List;
 public class OrderService {
 
     //Find all orders
-    public List<OrderEntity> findAllOrders (){
+    public List<OrderEntity> findAllOrders() {
         List<OrderEntity> orderList = new ArrayList<OrderEntity>();
-        for(OrderEntity od : orderList){
+        for (OrderEntity od : orderList) {
             orderList.add(od);
         }
 
