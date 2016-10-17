@@ -1,7 +1,7 @@
 <%@include file="header.jsp" %>
 
 <form action="/UpdateCargoServletConfirmed" method="get">
-    <input type="hidden" name="id" value="${cargo.id}" />
+    <input type="hidden" name="id" value="${cargo.id}"  />
     name:<br>
     <input type="text" name="name" value="${cargo.name}"/><br>
     weight:<br>

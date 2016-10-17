@@ -12,6 +12,9 @@ import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
  * Created by 123 on 05.10.2016.
  */
 
+
+//TODO write test for service classes
+
 public class Test {
 
 //    static final Logger logger = LogManager.getLogger(Test.class.getName());
