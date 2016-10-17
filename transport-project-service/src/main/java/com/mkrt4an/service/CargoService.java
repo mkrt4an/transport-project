@@ -11,6 +11,13 @@ import java.util.List;
 
 public class CargoService {
 
+    public void addNew(String name, String weight, String status) {
+
+
+
+
+    }
+
     //Find all cargo
     public List<CargoEntity> findAllCargo() {
         List<CargoEntity> cargoList = new ArrayList<CargoEntity>();

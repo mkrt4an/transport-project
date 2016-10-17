@@ -30,7 +30,6 @@ public class UpdateCargoServlet extends HttpServlet {
 
         if ("/UpdateCargoServlet".equals(url)){
             id = Integer.parseInt(request.getParameter("id"));
-
             request.setAttribute("cargo", cgd.findCargoById(id));
 
             request.getRequestDispatcher("/UpdateCargo.jsp").forward(request, response);

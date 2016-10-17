@@ -63,9 +63,9 @@ public class Test {
 //        PassportEntity =============================
 //        PassportEntity pte;
 
-        passport.delete(passport.findById(9));
+//        passport.delete(passport.findById(9));
 
-        System.out.println(passport.getAll());
+//        System.out.println(passport.getAll());
 
 
 //        CargoEntity================================
