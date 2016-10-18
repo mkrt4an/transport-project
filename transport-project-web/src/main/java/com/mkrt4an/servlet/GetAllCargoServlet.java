@@ -1,4 +1,6 @@
-package com.mkrt4an.servlet; /**
+package com.mkrt4an.servlet;
+
+/**
  * Created by 123 on 04.10.2016.
  */
 
@@ -14,16 +16,12 @@ import java.io.IOException;
 
 public class GetAllCargoServlet extends HttpServlet {
 
-    static final Logger logger = LogManager.getLogger(GetAllDriversServlet.class.getName());
+    static final Logger logger = LogManager.getLogger(GetAllCargoServlet.class.getName());
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("text/html");
-
-//        CargoService cargoService = new CargoService();
-
-//        List<CargoEntity> cgl = cgd.getAllCargo();
 
         request.setAttribute("list", new CargoService().findAll());
 

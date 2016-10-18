@@ -36,6 +36,12 @@ public class RoutePointEntity implements Serializable {
 
     public RoutePointEntity(){}
 
+    public RoutePointEntity(CityEntity city, CargoEntity cargo, Integer type) {
+        this.type = type;
+        this.city = city;
+        this.cargo = cargo;
+    }
+
     public RoutePointEntity(Integer type, CityEntity city, CargoEntity cargo, OrderEntity order) {
         this.type = type;
         this.city = city;
@@ -43,11 +49,11 @@ public class RoutePointEntity implements Serializable {
         this.order = order;
     }
 
-    public Integer getOrder() {
+    public Integer getId() {
         return id;
     }
-    public void setOrder(Integer order) {
-        this.id = order;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getType() {

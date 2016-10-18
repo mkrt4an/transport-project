@@ -1,6 +1,7 @@
 package com.mkrt4an.utils;
 
 import com.mkrt4an.dao.*;
+import com.mkrt4an.service.OrderService;
 
 import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
@@ -55,7 +56,7 @@ public class Test {
 //        user.updateUser(us1);
 //        user.deleteUser(user.findUserById(1));
 
-        System.out.println(user.getAll());
+//        System.out.println(user.getAll());
 
 //        PassportEntity =============================
 //        PassportEntity pte;
@@ -163,6 +164,16 @@ public class Test {
 //        System.out.println(truck.getAllTrucks());
 //        System.out.println(truck.findTruckById(1));
 
+
+
+        OrderService orderService = new OrderService();
+
+//        Integer i;
+//        i = orderService.addOrder(222, cargo.findCargoById(6), city.findCityById(3), city.findCityById(4));
+
+//        System.out.println(orderService.findById(String.valueOf(i)));
+
+        System.out.println(orderService.getSuitableTruckList(order.findOrderById(18)));
 
 
 

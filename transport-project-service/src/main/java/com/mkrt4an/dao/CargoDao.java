@@ -40,13 +40,14 @@ public class CargoDao {
     }
 
     //Create
-    public void createCargo(CargoEntity cg){
+    public Integer createCargo(CargoEntity cg){
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
         em.getTransaction().commit();
-        System.out.printf("New cargo is: %s\n", em.find(CargoEntity.class, cg.getId()));
 //        em.close();
+
+        return cg.getId();
     }
 
     //Update

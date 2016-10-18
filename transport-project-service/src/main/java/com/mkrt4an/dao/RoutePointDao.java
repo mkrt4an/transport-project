@@ -37,11 +37,13 @@ public class RoutePointDao {
     }
 
     //Create
-    public void createRoutePoint(RoutePointEntity cg){
+    public Integer createRoutePoint(RoutePointEntity cg){
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
         em.getTransaction().commit();
+
+        return cg.getId();
 //        em.close();
     }
 

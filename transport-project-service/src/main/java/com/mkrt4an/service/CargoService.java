@@ -14,17 +14,42 @@ import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 public class CargoService {
 
     //Add new
-    public void addNew(String name, String weight, String status) {
-        CargoDao cgd = new CargoDao(getEntityManager());
-        CargoEntity cge = new CargoEntity(name, Integer.parseInt(weight) ,Integer.parseInt(status));
-        cgd.createCargo(cge);
+    public Integer addNew(String name, String weight, String status) {
+        CargoDao cargoDao = new CargoDao(getEntityManager());
+        CargoEntity cargoEntity = new CargoEntity(name, Integer.parseInt(weight) ,Integer.parseInt(status));
+        cargoDao.createCargo(cargoEntity);
+        return cargoEntity.getId();
     }
 
+    //Find by id
+    public CargoEntity findById(String id) {
+        CargoDao cargoDao = new CargoDao(getEntityManager());
+        return  cargoDao.findCargoById(Integer.parseInt(id));
+    }
 
     //Find all
     public List<CargoEntity> findAll() {
-        CargoDao cgd = new CargoDao(getEntityManager());
-        return cgd.getAllCargo();
-
+        CargoDao cargoDao = new CargoDao(getEntityManager());
+        return cargoDao.getAllCargo();
     }
+
+    //Delete by id
+    public void deleteById(String id){
+        CargoDao cargoDao = new CargoDao(getEntityManager());
+        cargoDao.deleteCargo(cargoDao.findCargoById(Integer.parseInt(id)));
+    }
+
+    //Update
+    public void update(String id, String name, String weight, String status){
+        CargoDao cargoDao = new CargoDao(getEntityManager());
+        CargoEntity cargoEntity;
+        cargoEntity = cargoDao.findCargoById(Integer.parseInt(id));
+
+        cargoEntity.setName(name);
+        cargoEntity.setWeight(Integer.parseInt(weight));
+        cargoEntity.setStatus(Integer.parseInt(status));
+
+        cargoDao.updateCargo(cargoEntity);
+    }
+
 }

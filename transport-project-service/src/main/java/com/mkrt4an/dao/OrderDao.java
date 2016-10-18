@@ -37,12 +37,14 @@ public class OrderDao {
     }
 
     //Create
-    public void createOrder(OrderEntity cg){
+    public Integer createOrder(OrderEntity cg){
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
         em.getTransaction().commit();
 //        em.close();
+
+        return cg.getId();
     }
 
     //Update

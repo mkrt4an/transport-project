@@ -55,6 +55,12 @@ public class OrderEntity implements Serializable {
         this.currentTruck = currentTruck;
     }
 
+    public OrderEntity(Integer uid, Integer status, List<RoutePointEntity> routePointList) {
+        this.uid = uid;
+        this.status = status;
+        this.routePointList = routePointList;
+    }
+
     public OrderEntity(Integer uid, Integer status, TruckEntity currentTruck, List<DriverEntity> driverList) {
         this.uid = uid;
         this.status = status;
@@ -104,7 +110,6 @@ public class OrderEntity implements Serializable {
     }
 
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -133,10 +138,10 @@ public class OrderEntity implements Serializable {
                 "id=" + id +
                 ", uid=" + uid +
                 ", status=" + status +
-//                ", routePointList=" + routePointList +
+                ", routePointList=" + routePointList +
                 ", driverList=" + driverList +
 //                ", currentTruck=" + currentTruck.getRegNumber() +
-                ", currentTruck=" + (currentTruck == null ? "NULL" : currentTruck.getId()) +
+                ", currentTruck=" + (currentTruck == null ? "null" : currentTruck.getId()) +
                 '}' + "\n";
     }
 }

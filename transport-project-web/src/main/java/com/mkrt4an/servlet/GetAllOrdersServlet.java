@@ -18,7 +18,7 @@ import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 public class GetAllOrdersServlet extends HttpServlet {
 
-    static final Logger logger = LogManager.getLogger(GetAllDriversServlet.class.getName());
+    static final Logger logger = LogManager.getLogger(GetAllOrdersServlet.class.getName());
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

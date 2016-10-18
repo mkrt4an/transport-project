@@ -6,6 +6,8 @@ package com.mkrt4an.servlet;
 
 import com.mkrt4an.dao.TruckDao;
 import com.mkrt4an.entity.TruckEntity;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +19,9 @@ import java.util.List;
 import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 public class GetAllTrucksServlet extends HttpServlet {
+
+    static final Logger logger = LogManager.getLogger(GetAllTrucksServlet.class.getName());
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

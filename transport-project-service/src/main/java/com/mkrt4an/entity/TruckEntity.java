@@ -87,12 +87,12 @@ public class TruckEntity implements Serializable {
     public CityEntity getCurrentCity() { return currentCity; }
     public void setCurrentCity(CityEntity currentCity) { this.currentCity = currentCity; }
 
-//    public OrderEntity getOrders() {
-//        return orders;
-//    }
-//    public void setOrders(OrderEntity order) {
-//        this.orders = order;
-//    }
+    public OrderEntity getOrders() {
+        return orders;
+    }
+    public void setOrders(OrderEntity order) {
+        this.orders = order;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -129,7 +129,7 @@ public class TruckEntity implements Serializable {
                 ", status=" + status +
                 ", regNumber=" + regNumber + '\'' +
                 ", currentCity=" + currentCity.getName() +
-                ", order=" + orders.getId() +
+                ", order=" + (orders == null ? "null" : orders.getId()) +
                 '}' + "\n";
     }
 }
