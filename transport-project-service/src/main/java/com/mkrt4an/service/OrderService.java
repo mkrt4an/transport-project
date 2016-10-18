@@ -16,6 +16,7 @@ import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 public class OrderService {
 
+
     //Find by id
     public OrderEntity findById(String id) {
         OrderDao orderDao = new OrderDao(getEntityManager());
@@ -54,21 +55,23 @@ public class OrderService {
     }
 
 
-
     // Get truck suitable for this order
     public TruckEntity getSuitableTruck(OrderEntity orderEntity) {
         return null;
     }
+
 
     // Get driver list suitable for this order
     public List<DriverEntity> getSuitableDriverList(OrderEntity orderEntity) {
         return null;
     }
 
+
     // Get driver suitable for this order
     public DriverEntity getSuitableDriver(OrderEntity orderEntity) {
         return null;
     }
+
 
     // Add new order by uid, cargoEntity and CityEntity
     public Integer addOrder(Integer uid, CargoEntity cargoEntity, CityEntity fromCity, CityEntity toCity) {
