@@ -28,7 +28,7 @@ public class DriverEntity implements Serializable {
     @Column(name = "status", nullable = false)
     private Integer status;
 
-    @OneToOne   //  (cascade = CascadeType.DETACH)
+    @ManyToOne   //  (cascade = CascadeType.DETACH)
     @JoinColumn(name= "truck_id")
     private TruckEntity currentTruck;
 

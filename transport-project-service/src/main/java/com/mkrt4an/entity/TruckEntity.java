@@ -2,6 +2,7 @@ package com.mkrt4an.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by 123 on 02.10.2016.
@@ -35,10 +36,12 @@ public class TruckEntity implements Serializable {
     @JoinColumn(name= "orders_id")
     private OrderEntity orders;
 
-
-
+    @OneToMany
+    (mappedBy = "currentTruck")
+    private List<DriverEntity> driverList;
 
     public TruckEntity(){}
+
 
     public TruckEntity(Integer dutySize, Integer capasity, Integer status, String regNumber, CityEntity currentCity) {
         this.dutySize = dutySize;
@@ -51,46 +54,54 @@ public class TruckEntity implements Serializable {
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
-
     public Integer getDutySize() {
         return dutySize;
     }
+
     public void setDutySize(Integer dutySize) {
         this.dutySize = dutySize;
     }
-
     public Integer getCapasity() {
         return capasity;
     }
+
     public void setCapasity(Integer capasity) {
         this.capasity = capasity;
     }
-
     public Integer getStatus() {
         return status;
     }
+
     public void setStatus(Integer status) {
         this.status = status;
     }
-
     public String getRegNumber() {
         return regNumber;
     }
+
     public void setRegNumber(String regNumber) {
         this.regNumber = regNumber;
     }
-
     public CityEntity getCurrentCity() { return currentCity; }
-    public void setCurrentCity(CityEntity currentCity) { this.currentCity = currentCity; }
 
+    public void setCurrentCity(CityEntity currentCity) { this.currentCity = currentCity; }
     public OrderEntity getOrders() {
         return orders;
     }
+
     public void setOrders(OrderEntity order) {
         this.orders = order;
+    }
+
+    public List<DriverEntity> getDriverList() {
+        return driverList;
+    }
+    public void setDriverList(List<DriverEntity> driverList) {
+        this.driverList = driverList;
     }
 
     @Override
