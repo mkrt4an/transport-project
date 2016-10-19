@@ -1,8 +1,5 @@
 package com.mkrt4an.entity;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -22,11 +19,12 @@ public class RoutePointEntity implements Serializable {
     @Column(name = "type", nullable = false)
     private Integer type;
 
-    @OneToOne (mappedBy = "routepoint")
+    @ManyToOne
+    @JoinColumn(name = "city_id")
     private CityEntity city;
 
-    @OneToOne (mappedBy = "routePoint")
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToOne
+    @JoinColumn(name = "cargo_id")
     private CargoEntity cargo;
 
     @ManyToOne

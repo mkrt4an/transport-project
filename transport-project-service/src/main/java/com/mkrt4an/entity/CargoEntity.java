@@ -1,7 +1,11 @@
 package com.mkrt4an.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by 123 on 02.10.2016.
@@ -24,8 +28,10 @@ public class CargoEntity implements Serializable {
     @Column(name = "status", nullable = false)
     private Integer status;
 
-    @OneToOne
-    private RoutePointEntity routePoint;
+
+    @OneToMany(mappedBy = "cargo")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<RoutePointEntity> routePointList;
 
     public CargoEntity(){
     }
@@ -74,13 +80,13 @@ public class CargoEntity implements Serializable {
         this.status = status;
     }
 
-    public void setRoutinPoint(RoutePointEntity routinPoint) {
-        this.routePoint = routinPoint;
+    public List<RoutePointEntity> getRoutePointList() {
+        return routePointList;
     }
-    public RoutePointEntity getRoutinPoint() {
+    public void setRoutePointList(List<RoutePointEntity> routePointList) {
+        this.routePointList = routePointList;
+    }
 
-        return routePoint;
-    }
 
     //Constructors
 //    CargoEntity(){

@@ -1,5 +1,8 @@
 package com.mkrt4an.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -28,7 +31,7 @@ public class TruckEntity implements Serializable {
     @Column(name = "regNumber", nullable = false, length = 45)
     private String regNumber;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "city_id")
     private CityEntity currentCity;
 
@@ -36,8 +39,8 @@ public class TruckEntity implements Serializable {
     @JoinColumn(name= "orders_id")
     private OrderEntity orders;
 
-    @OneToMany
-    (mappedBy = "currentTruck")
+    @OneToMany(mappedBy = "currentTruck")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<DriverEntity> driverList;
 
     public TruckEntity(){}

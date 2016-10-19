@@ -1,7 +1,12 @@
 package com.mkrt4an.utils;
 
 import com.mkrt4an.dao.*;
+import com.mkrt4an.entity.OrderEntity;
+import com.mkrt4an.entity.RoutePointEntity;
 import com.mkrt4an.service.OrderService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
@@ -180,35 +185,35 @@ public class Test {
 
 
         //===============================================================
-//        List<RoutePointEntity> routePointEntityList = new ArrayList<>();
-//        routePointEntityList.add(routePoint.findRoutePointById(1));
-//        routePointEntityList.add(routePoint.findRoutePointById(2));
-////        routePointEntityList.add(routePoint.findRoutePointById(3));
-////
+        List<RoutePointEntity> routePointEntityList = new ArrayList<>();
+        routePointEntityList.add(routePoint.findRoutePointById(1));
+        routePointEntityList.add(routePoint.findRoutePointById(2));
+//        routePointEntityList.add(routePoint.findRoutePointById(3));
 //
-//        OrderEntity orderDraft = new OrderEntity(54321, 0, routePointEntityList);
-//        orderDraft.assignRoutePointList(routePointEntityList);
-//
-//        orderDraft.setCurrentTruck(orderService.getSuitableTruck(orderDraft));
-//        if (orderService.getSuitableTruck(orderDraft) != null) {
-//            orderDraft.assignCurrentTruck(orderService.getSuitableTruck(orderDraft));
-//        }
-//
-//        orderDraft.setDriverList(orderService.getSuitableDriverList(orderDraft));
-//        orderDraft.assignDriverList(orderService.getSuitableDriverList(orderDraft));
-//
-//
-////        OrderEntity orderEntity = new OrderEntity(12345, 0, routePointEntityList,
-////                orderService.getSuitableDriverList(orderDraft),
-////                orderService.getSuitableTruck(orderDraft));
+
+        OrderEntity orderDraft = new OrderEntity(54321, 0, routePointEntityList);
+        orderDraft.assignRoutePointList(routePointEntityList);
+
+        orderDraft.setCurrentTruck(orderService.getSuitableTruck(orderDraft));
+        if (orderService.getSuitableTruck(orderDraft) != null) {
+            orderDraft.assignCurrentTruck(orderService.getSuitableTruck(orderDraft));
+        }
+
+        orderDraft.setDriverList(orderService.getSuitableDriverList(orderDraft));
+        orderDraft.assignDriverList(orderService.getSuitableDriverList(orderDraft));
+
+
+//        OrderEntity orderEntity = new OrderEntity(12345, 0, routePointEntityList,
+//                orderService.getSuitableDriverList(orderDraft),
+//                orderService.getSuitableTruck(orderDraft));
 //========================================================
 //
 
-//        order.updateOrder(orderDraft);
+        order.updateOrder(orderDraft);
 
-        orderService.deleteOrder(order.findOrderById(38));
+//        orderService.deleteOrder(order.findOrderById(37));
 
-//        System.out.println(orderDraft);
+        System.out.println(orderDraft);
 
 
 //=============================================================

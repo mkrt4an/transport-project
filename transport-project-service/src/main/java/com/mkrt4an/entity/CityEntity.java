@@ -1,7 +1,11 @@
 package com.mkrt4an.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by 123 on 02.10.2016.
@@ -25,11 +29,20 @@ public class CityEntity implements Serializable {
     @Column(name = "y", nullable = false, length = 11)
     private Integer y;
 
-    @OneToOne
-//            (name = "routepoint_id")
-    private RoutePointEntity routepoint;
+    @OneToMany
+    (mappedBy = "city")
+    private List<RoutePointEntity> routePointList;
+
+    @OneToMany (mappedBy = "currentCity")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<DriverEntity> driverList;
+
+    @OneToMany (mappedBy = "currentCity")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<TruckEntity> truckList;
 
     public CityEntity(){}
+
 
     public CityEntity(String name, Integer x, Integer y) {
         this.name = name;
@@ -64,6 +77,27 @@ public class CityEntity implements Serializable {
     }
     public void setY(Integer y) {
         this.y = y;
+    }
+
+    public List<RoutePointEntity> getRoutePointList() {
+        return routePointList;
+    }
+    public void setRoutePointList(List<RoutePointEntity> routePointList) {
+        this.routePointList = routePointList;
+    }
+
+    public List<DriverEntity> getDriverList() {
+        return driverList;
+    }
+    public void setDriverList(List<DriverEntity> driverList) {
+        this.driverList = driverList;
+    }
+
+    public List<TruckEntity> getTruckList() {
+        return truckList;
+    }
+    public void setTruckList(List<TruckEntity> truckList) {
+        this.truckList = truckList;
     }
 
 
