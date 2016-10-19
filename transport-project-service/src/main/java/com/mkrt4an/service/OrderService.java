@@ -1,5 +1,6 @@
 package com.mkrt4an.service;
 
+import com.mkrt4an.dao.DriverDao;
 import com.mkrt4an.dao.OrderDao;
 import com.mkrt4an.dao.RoutePointDao;
 import com.mkrt4an.dao.TruckDao;
@@ -16,11 +17,21 @@ import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 public class OrderService {
 
+    // Exceptions
+//    public class NoSuitableDrversException extends Exception {
+//        NoSuitableDrversException() {
+//        }
+//    }
+
+//    public class NoSuitableTruckException extends Exception {
+//        NoSuitableTruckException() {
+//        }
+//    }
 
     //Find by id
     public OrderEntity findById(String id) {
         OrderDao orderDao = new OrderDao(getEntityManager());
-        return  orderDao.findOrderById(Integer.parseInt(id));
+        return orderDao.findOrderById(Integer.parseInt(id));
     }
 
 
@@ -34,19 +45,48 @@ public class OrderService {
         return orderList;
     }
 
-    //Get list of truck avaible for this order
-    public List<TruckEntity> getSuitableTruckList(OrderEntity orderEntity) {
+    // Get truck suitable for this order
+    public TruckEntity getSuitableTruck(OrderEntity orderEntity)
+//            throws NoSuitableTruckException
+
+    {
+
         TruckDao truckDao = new TruckDao(getEntityManager());
 
-        List<TruckEntity> suitableTrucks = new ArrayList<TruckEntity>();
+        List<TruckEntity> suitableTrucks = new ArrayList<>();
 
         List<TruckEntity> allTrucks = truckDao.getAllTrucks();
 
-        for(TruckEntity truckEntity : allTrucks){
+        for (TruckEntity truckEntity : allTrucks) {
             if (
 //                    (orderEntity.getRoutePointList().get(0).getCargo().getWeight() <= truckEntity.getCapasity())&&
-            truckEntity.getStatus() == 1 &&
-            truckEntity.getOrders() == null) {
+                    truckEntity.getStatus() == 1 &&
+                            truckEntity.getOrders() == null) {
+                suitableTrucks.add(truckEntity);
+            }
+        }
+
+        return  suitableTrucks.isEmpty() ? null : suitableTrucks.get(0);
+    }
+
+
+    //Get list of truck avaible for this order
+    public List<TruckEntity> getSuitableTruckList(OrderEntity orderEntity)
+//            throws NoSuitableTruckException
+
+    {
+
+        TruckDao truckDao = new TruckDao(getEntityManager());
+
+        List<TruckEntity> suitableTrucks = new ArrayList<>();
+
+        List<TruckEntity> allTrucks = truckDao.getAllTrucks();
+
+        for (TruckEntity truckEntity : allTrucks) {
+            if (
+//                    (orderEntity.getRoutePointList().get(0).getCargo().getWeight() <= truckEntity.getCapasity())&&
+                    truckEntity.getStatus() == 1 &&
+                            truckEntity.getOrders() == null) {
                 suitableTrucks.add(truckEntity);
             }
         }
@@ -55,21 +95,51 @@ public class OrderService {
     }
 
 
-    // Get truck suitable for this order
-    public TruckEntity getSuitableTruck(OrderEntity orderEntity) {
-        return null;
+    // Get driver suitable for this order
+    public DriverEntity getSuitableDriver(OrderEntity orderEntity)
+//            throws NoSuitableDrversException
+
+    {
+
+        DriverDao driverDao = new DriverDao(getEntityManager());
+
+        List<DriverEntity> suitableDrivetList = new ArrayList<>();
+
+        List<DriverEntity> driverEntityList = driverDao.getAllDrivers();
+
+        for (DriverEntity driverEntity : driverEntityList) {
+            if (driverEntity.getOrder() == null && driverEntity.getCurrentCity() == orderEntity.getCurrentTruck().getCurrentCity()) {
+                suitableDrivetList.add(driverEntity);
+            }
+        }
+
+        return suitableDrivetList.isEmpty() ? null : suitableDrivetList.get(0);
     }
 
 
     // Get driver list suitable for this order
-    public List<DriverEntity> getSuitableDriverList(OrderEntity orderEntity) {
-        return null;
-    }
+    public List<DriverEntity> getSuitableDriverList(OrderEntity orderEntity)
+//            throws NoSuitableDrversException
 
+    {
 
-    // Get driver suitable for this order
-    public DriverEntity getSuitableDriver(OrderEntity orderEntity) {
-        return null;
+        DriverDao driverDao = new DriverDao(getEntityManager());
+
+        List<DriverEntity> suitableDrivetList = new ArrayList<>();
+
+        List<DriverEntity> driverEntityList = driverDao.getAllDrivers();
+
+        for (DriverEntity driverEntity : driverEntityList) {
+            if (driverEntity.getOrder() == null
+                    && orderEntity.getCurrentTruck().getDutySize() > suitableDrivetList.size()
+                    && driverEntity.getCurrentCity() == orderEntity.getCurrentTruck().getCurrentCity()
+                    ) {
+                suitableDrivetList.add(driverEntity);
+                driverEntity.setCurrentTruck(orderEntity.getCurrentTruck());
+            }
+        }
+
+        return suitableDrivetList;
     }
 
 
@@ -93,9 +163,26 @@ public class OrderService {
         routePointEntityList.add(routePointDao.findRoutePointById(i));
 
 
-        OrderEntity orderEntity = new OrderEntity(uid, 1 , routePointEntityList);
+        OrderEntity orderEntity = new OrderEntity(uid, 1, routePointEntityList);
 
         return orderDao.createOrder(orderEntity);
+    }
+
+    public void deleteOrder(OrderEntity orderEntity) {
+        OrderDao orderDao = new OrderDao(getEntityManager());
+        orderDao.deleteOrder(orderEntity);
+    }
+
+    public void deleteOrderById(Integer orderEntityId) {
+        OrderDao orderDao = new OrderDao(getEntityManager());
+        DriverDao driverDao = new DriverDao(getEntityManager());
+
+        OrderEntity orderEntity = orderDao.findOrderById(orderEntityId);
+        Integer currentTruckId = orderEntity.getCurrentTruck().getId();
+        DriverEntity driverEntity = driverDao.findDriverById(currentTruckId);
+//        driverEntity.
+        orderDao.deleteOrder(orderEntity);
+
     }
 
 }

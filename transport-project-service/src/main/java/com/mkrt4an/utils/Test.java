@@ -1,12 +1,7 @@
 package com.mkrt4an.utils;
 
 import com.mkrt4an.dao.*;
-import com.mkrt4an.entity.DriverEntity;
-import com.mkrt4an.entity.OrderEntity;
 import com.mkrt4an.service.OrderService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
@@ -24,13 +19,13 @@ public class Test {
 
     public static void main(String[] args) {
 
-        CargoDao cargo =   new CargoDao(getEntityManager());
-        TruckDao truck =   new TruckDao(getEntityManager());
+        CargoDao cargo = new CargoDao(getEntityManager());
+        TruckDao truck = new TruckDao(getEntityManager());
         DriverDao driver = new DriverDao(getEntityManager());
-        OrderDao order =   new OrderDao(getEntityManager());
-        CityDao city =     new CityDao(getEntityManager());
+        OrderDao order = new OrderDao(getEntityManager());
+        CityDao city = new CityDao(getEntityManager());
         RoutePointDao routePoint = new RoutePointDao(getEntityManager());
-        UserDao user =     new UserDao(getEntityManager());
+        UserDao user = new UserDao(getEntityManager());
         PassportDao passport = new PassportDao(getEntityManager());
 
 //        System.out.println(truck.getAllTrucks());
@@ -182,38 +177,44 @@ public class Test {
 
 //        System.out.println(orderService.getSuitableTruckList(order.findOrderById(18)));
 
-//        List<RoutePointEntity> routePointEntityList = new ArrayList<RoutePointEntity>();
+
+
+        //===============================================================
+//        List<RoutePointEntity> routePointEntityList = new ArrayList<>();
 //        routePointEntityList.add(routePoint.findRoutePointById(1));
 //        routePointEntityList.add(routePoint.findRoutePointById(2));
-//        routePointEntityList.add(routePoint.findRoutePointById(3));
+////        routePointEntityList.add(routePoint.findRoutePointById(3));
+////
 //
-        OrderEntity orderEntity = order.findOrderById(1);
+//        OrderEntity orderDraft = new OrderEntity(54321, 0, routePointEntityList);
+//        orderDraft.assignRoutePointList(routePointEntityList);
 //
-//        orderEntity.assignRoutePointList(routePointEntityList);
-//        order.updateOrder(orderEntity);
+//        orderDraft.setCurrentTruck(orderService.getSuitableTruck(orderDraft));
+//        if (orderService.getSuitableTruck(orderDraft) != null) {
+//            orderDraft.assignCurrentTruck(orderService.getSuitableTruck(orderDraft));
+//        }
+//
+//        orderDraft.setDriverList(orderService.getSuitableDriverList(orderDraft));
+//        orderDraft.assignDriverList(orderService.getSuitableDriverList(orderDraft));
+//
+//
+////        OrderEntity orderEntity = new OrderEntity(12345, 0, routePointEntityList,
+////                orderService.getSuitableDriverList(orderDraft),
+////                orderService.getSuitableTruck(orderDraft));
+//========================================================
+//
 
-        List<DriverEntity> driverEntityList = new ArrayList<>();
-        driverEntityList.add(driver.findDriverById(1));
-        driverEntityList.add(driver.findDriverById(2));
-        driverEntityList.add(driver.findDriverById(3));
+//        order.updateOrder(orderDraft);
 
-        orderEntity.assignDriverList(driverEntityList);
+        orderService.deleteOrder(order.findOrderById(38));
 
-
-//        order.updateOrder(order.findOrderById(1));
-
-//        orderEntity.assignCurrentTruck(truck.findTruckById(1));
-        order.updateOrder(orderEntity);
-        System.out.println(orderEntity);
-
-
+//        System.out.println(orderDraft);
 
 
 //=============================================================
 //        PassportEntity passportEntity = passport.findById(1);
 
 //        UserEntity userEntity = user.findById(1);
-
 
 //        userEntity.setPassport(passportEntity);
 //        passportEntity.assignUser(userEntity);
@@ -224,12 +225,6 @@ public class Test {
 
 //        System.out.println(passportEntity.getUser().getPassport());
 //        System.out.println(userEntity.getPassport());
-
-
-
-
-
-
 
 
     }

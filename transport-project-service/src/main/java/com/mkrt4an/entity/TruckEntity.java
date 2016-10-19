@@ -36,6 +36,8 @@ public class TruckEntity implements Serializable {
     private OrderEntity orders;
 
 
+
+
     public TruckEntity(){}
 
     public TruckEntity(Integer dutySize, Integer capasity, Integer status, String regNumber, CityEntity currentCity) {

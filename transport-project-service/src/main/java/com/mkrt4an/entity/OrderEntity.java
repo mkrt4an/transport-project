@@ -26,25 +26,24 @@ public class OrderEntity implements Serializable {
     @Column(name = "status", nullable = true)
     private Integer status;
 
-    @OneToMany (mappedBy = "order")
+    @OneToMany(mappedBy = "order")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<RoutePointEntity> routePointList;
 
-    @OneToMany (mappedBy = "order")
+    @OneToMany(mappedBy = "order")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<DriverEntity> driverList;
 
-    @OneToOne (mappedBy = "orders")
+    @OneToOne(mappedBy = "orders")
     @LazyCollection(LazyCollectionOption.FALSE)
     private TruckEntity currentTruck;
 
 
-
-
-    public OrderEntity(){}
+    public OrderEntity() {
+    }
 
     public OrderEntity(Integer uid, Integer status, List<RoutePointEntity> routePointList,
-                                List<DriverEntity> driverList, TruckEntity currentTruck) {
+                       List<DriverEntity> driverList, TruckEntity currentTruck) {
         this.uid = uid;
         this.status = status;
         this.routePointList = routePointList;
@@ -68,11 +67,13 @@ public class OrderEntity implements Serializable {
         this.uid = uid;
         this.status = status;
         this.currentTruck = currentTruck;
+
     }
 
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -80,6 +81,7 @@ public class OrderEntity implements Serializable {
     public Integer getUid() {
         return uid;
     }
+
     public void setUid(Integer uid) {
         this.uid = uid;
     }
@@ -87,6 +89,7 @@ public class OrderEntity implements Serializable {
     public Integer getStatus() {
         return status;
     }
+
     public void setStatus(Integer status) {
         this.status = status;
     }
@@ -94,6 +97,7 @@ public class OrderEntity implements Serializable {
     public void setCurrentTruck(TruckEntity currentTruck) {
         this.currentTruck = currentTruck;
     }
+
     public TruckEntity getCurrentTruck() {
         return currentTruck;
     }
@@ -101,6 +105,7 @@ public class OrderEntity implements Serializable {
     public List<RoutePointEntity> getRoutePointList() {
         return routePointList;
     }
+
     public void setRoutePointList(List<RoutePointEntity> routePointList) {
         this.routePointList = routePointList;
     }
@@ -108,26 +113,27 @@ public class OrderEntity implements Serializable {
     public List<DriverEntity> getDriverList() {
         return driverList;
     }
+
     public void setDriverList(List<DriverEntity> driverList) {
         this.driverList = driverList;
     }
 
 
-    public void assignRoutePointList(List<RoutePointEntity> routePointList){
+    public void assignRoutePointList(List<RoutePointEntity> routePointList) {
         this.routePointList = routePointList;
-        for(RoutePointEntity routePointEntity : routePointList) {
+        for (RoutePointEntity routePointEntity : routePointList) {
             routePointEntity.setOrder(this);
         }
     }
 
-    public void assignDriverList(List<DriverEntity> driverList){
+    public void assignDriverList(List<DriverEntity> driverList) {
         this.driverList = driverList;
-        for(DriverEntity driverEntity : driverList) {
+        for (DriverEntity driverEntity : driverList) {
             driverEntity.setOrder(this);
         }
     }
 
-    public void assignCurrentTruck (TruckEntity currentTruck){
+    public void assignCurrentTruck(TruckEntity currentTruck) {
         this.currentTruck = currentTruck;
         currentTruck.setOrders(this);
     }

@@ -163,8 +163,8 @@ public class DriverEntity implements Serializable {
                 ", workedHours=" + workedHours +
                 ", status=" + status +
                 ", currentTruck=" + (currentTruck == null ? "null" : currentTruck.getRegNumber()) +
-                ", currentCity=" + currentCity.getName() +
-//                ", driver=" + driver +
+                ", currentCity=" + (currentCity == null ? "null" : currentCity.getName()) +
+                ", order=" + (order == null ? "null" : order.getId()) +
                 '}' + "\n";
     }
 }
