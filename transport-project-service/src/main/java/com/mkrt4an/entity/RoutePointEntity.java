@@ -77,6 +77,13 @@ public class RoutePointEntity implements Serializable {
         this.cargo = cargo;
     }
 
+    public OrderEntity getOrder() {
+        return order;
+    }
+    public void setOrder(OrderEntity order) {
+        this.order = order;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

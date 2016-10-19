@@ -27,13 +27,10 @@ public class TruckEntity implements Serializable {
     @Column(name = "regNumber", nullable = false, length = 45)
     private String regNumber;
 
-    @OneToOne   //  (cascade = CascadeType.DETACH)
+    @OneToOne
     @JoinColumn(name = "city_id")
     private CityEntity currentCity;
 
-
-//    @OneToOne(mappedBy = "currentTruck", cascade = CascadeType.ALL)
-//    @OneToOne(mappedBy = "currentTruck", cascade = CascadeType.ALL)
     @OneToOne
     @JoinColumn(name= "orders_id")
     private OrderEntity orders;

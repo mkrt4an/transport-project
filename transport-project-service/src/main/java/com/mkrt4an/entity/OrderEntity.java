@@ -38,6 +38,9 @@ public class OrderEntity implements Serializable {
     @LazyCollection(LazyCollectionOption.FALSE)
     private TruckEntity currentTruck;
 
+
+
+
     public OrderEntity(){}
 
     public OrderEntity(Integer uid, Integer status, List<RoutePointEntity> routePointList,
@@ -107,6 +110,26 @@ public class OrderEntity implements Serializable {
     }
     public void setDriverList(List<DriverEntity> driverList) {
         this.driverList = driverList;
+    }
+
+
+    public void assignRoutePointList(List<RoutePointEntity> routePointList){
+        this.routePointList = routePointList;
+        for(RoutePointEntity routePointEntity : routePointList) {
+            routePointEntity.setOrder(this);
+        }
+    }
+
+    public void assignDriverList(List<DriverEntity> driverList){
+        this.driverList = driverList;
+        for(DriverEntity driverEntity : driverList) {
+            driverEntity.setOrder(this);
+        }
+    }
+
+    public void assignCurrentTruck (TruckEntity currentTruck){
+        this.currentTruck = currentTruck;
+        currentTruck.setOrders(this);
     }
 
 

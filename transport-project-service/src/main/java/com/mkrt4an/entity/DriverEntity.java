@@ -40,7 +40,6 @@ public class DriverEntity implements Serializable {
     @JoinColumn(name= "orders_id")
     private OrderEntity order;
 
-
     public DriverEntity(String firstName, String lastName, Integer workedHours, Integer status, CityEntity currentCity) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -48,6 +47,7 @@ public class DriverEntity implements Serializable {
         this.status = status;
         this.currentCity = currentCity;
     }
+
 
     public DriverEntity(String firstName, String lastName, Integer workedHours, Integer status, TruckEntity currentTruck, CityEntity currentCity) {
         this.firstName = firstName;
@@ -105,9 +105,6 @@ public class DriverEntity implements Serializable {
     public TruckEntity getCurrentTruck() {
         return currentTruck;
     }
-//    public String getCurrentTruck() {
-//        return currentTruck.getRegNumber();
-//    }
     public void setCurrentTruck(TruckEntity currentTruck) {
         this.currentTruck = currentTruck;
     }
@@ -115,12 +112,15 @@ public class DriverEntity implements Serializable {
     public CityEntity getCurrentCity() {
         return currentCity;
     }
-
-//    public String getCurrentCity() {
-//        return currentCity.getName();
-//    }
     public void setCurrentCity(CityEntity currentCity) {
         this.currentCity = currentCity;
+    }
+
+    public OrderEntity getOrder() {
+        return order;
+    }
+    public void setOrder(OrderEntity order) {
+        this.order = order;
     }
 
 
@@ -162,7 +162,7 @@ public class DriverEntity implements Serializable {
                 ", lastName=" + lastName + '\'' +
                 ", workedHours=" + workedHours +
                 ", status=" + status +
-                ", currentTruck=" + currentTruck.getRegNumber() +
+                ", currentTruck=" + (currentTruck == null ? "null" : currentTruck.getRegNumber()) +
                 ", currentCity=" + currentCity.getName() +
 //                ", driver=" + driver +
                 '}' + "\n";

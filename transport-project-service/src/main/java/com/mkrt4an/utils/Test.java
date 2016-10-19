@@ -1,7 +1,12 @@
 package com.mkrt4an.utils;
 
 import com.mkrt4an.dao.*;
+import com.mkrt4an.entity.DriverEntity;
+import com.mkrt4an.entity.OrderEntity;
 import com.mkrt4an.service.OrderService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
@@ -165,7 +170,9 @@ public class Test {
 //        System.out.println(truck.findTruckById(1));
 
 
+//========================== ORDER================================
 
+        //------------route points list
         OrderService orderService = new OrderService();
 
 //        Integer i;
@@ -173,7 +180,51 @@ public class Test {
 
 //        System.out.println(orderService.findById(String.valueOf(i)));
 
-        System.out.println(orderService.getSuitableTruckList(order.findOrderById(18)));
+//        System.out.println(orderService.getSuitableTruckList(order.findOrderById(18)));
+
+//        List<RoutePointEntity> routePointEntityList = new ArrayList<RoutePointEntity>();
+//        routePointEntityList.add(routePoint.findRoutePointById(1));
+//        routePointEntityList.add(routePoint.findRoutePointById(2));
+//        routePointEntityList.add(routePoint.findRoutePointById(3));
+//
+        OrderEntity orderEntity = order.findOrderById(1);
+//
+//        orderEntity.assignRoutePointList(routePointEntityList);
+//        order.updateOrder(orderEntity);
+
+        List<DriverEntity> driverEntityList = new ArrayList<>();
+        driverEntityList.add(driver.findDriverById(1));
+        driverEntityList.add(driver.findDriverById(2));
+        driverEntityList.add(driver.findDriverById(3));
+
+        orderEntity.assignDriverList(driverEntityList);
+
+
+//        order.updateOrder(order.findOrderById(1));
+
+//        orderEntity.assignCurrentTruck(truck.findTruckById(1));
+        order.updateOrder(orderEntity);
+        System.out.println(orderEntity);
+
+
+
+
+//=============================================================
+//        PassportEntity passportEntity = passport.findById(1);
+
+//        UserEntity userEntity = user.findById(1);
+
+
+//        userEntity.setPassport(passportEntity);
+//        passportEntity.assignUser(userEntity);
+
+//        passport.update(passportEntity);
+
+//        passportEntity.setUser(userEntity);
+
+//        System.out.println(passportEntity.getUser().getPassport());
+//        System.out.println(userEntity.getPassport());
+
 
 
 

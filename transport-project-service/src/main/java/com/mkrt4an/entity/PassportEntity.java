@@ -18,7 +18,7 @@ public class PassportEntity implements Serializable {
     @Column(name = "serial", nullable = false, length = 20)
     private Integer serial;
 
-    @OneToOne (mappedBy = "passport")
+    @OneToOne (mappedBy = "passport", cascade=CascadeType.ALL)
 //    @LazyCollection(LazyCollectionOption.FALSE)
     private UserEntity user;
 
@@ -42,6 +42,11 @@ public class PassportEntity implements Serializable {
     }
     public void setUser(UserEntity user) {
         this.user = user;
+    }
+
+    public void assignUser(UserEntity user) {
+        this.user = user;
+        user.setPassport(this);
     }
 
     //Constructors
