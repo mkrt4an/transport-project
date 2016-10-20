@@ -62,7 +62,7 @@ public class UpdateDriverServlet extends HttpServlet {
             dre.setWorkedHours(workedHours);
             dre.setStatus(status);
             dre.setCurrentCity(ctd.findCityById(cityId));
-            dre.setCurrentTruck(tkd.findTruckById(currentTruckId));
+//            dre.setCurrentTruck(tkd.findTruckById(currentTruckId));
             drd.updateDriver(dre);
 
             request.getRequestDispatcher("/GetAllDriversServlet").forward(request, response);

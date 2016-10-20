@@ -1,11 +1,7 @@
 package com.mkrt4an.entity;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by 123 on 02.10.2016.
@@ -39,9 +35,9 @@ public class TruckEntity implements Serializable {
     @JoinColumn(name= "orders_id")
     private OrderEntity orders;
 
-    @OneToMany(mappedBy = "currentTruck")
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<DriverEntity> driverList;
+//    @OneToMany(mappedBy = "currentTruck")
+//    @LazyCollection(LazyCollectionOption.FALSE)
+//    private List<DriverEntity> driverList;
 
     public TruckEntity(){}
 
@@ -100,12 +96,12 @@ public class TruckEntity implements Serializable {
         this.orders = order;
     }
 
-    public List<DriverEntity> getDriverList() {
-        return driverList;
-    }
-    public void setDriverList(List<DriverEntity> driverList) {
-        this.driverList = driverList;
-    }
+//    public List<DriverEntity> getDriverList() {
+//        return driverList;
+//    }
+//    public void setDriverList(List<DriverEntity> driverList) {
+//        this.driverList = driverList;
+//    }
 
     @Override
     public boolean equals(Object o) {

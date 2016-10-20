@@ -28,9 +28,9 @@ public class DriverEntity implements Serializable {
     @Column(name = "status", nullable = false)
     private Integer status;
 
-    @ManyToOne    (cascade = CascadeType.ALL)
-    @JoinColumn(name= "truck_id")
-    private TruckEntity currentTruck;
+//    @ManyToOne    (cascade = CascadeType.ALL)
+//    @JoinColumn(name= "truck_id")
+//    private TruckEntity currentTruck;
 
     @ManyToOne   //  (cascade = CascadeType.DETACH)
     @JoinColumn(name= "city_id")
@@ -54,7 +54,7 @@ public class DriverEntity implements Serializable {
         this.lastName = lastName;
         this.workedHours = workedHours;
         this.status = status;
-        this.currentTruck = currentTruck;
+//        this.currentTruck = currentTruck;
         this.currentCity = currentCity;
     }
 
@@ -102,12 +102,12 @@ public class DriverEntity implements Serializable {
         this.status = status;
     }
 
-    public TruckEntity getCurrentTruck() {
-        return currentTruck;
-    }
-    public void setCurrentTruck(TruckEntity currentTruck) {
-        this.currentTruck = currentTruck;
-    }
+//    public TruckEntity getCurrentTruck() {
+//        return currentTruck;
+//    }
+//    public void setCurrentTruck(TruckEntity currentTruck) {
+//        this.currentTruck = currentTruck;
+//    }
 
     public CityEntity getCurrentCity() {
         return currentCity;
@@ -136,7 +136,7 @@ public class DriverEntity implements Serializable {
         if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
         if (workedHours != null ? !workedHours.equals(that.workedHours) : that.workedHours != null) return false;
         if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (currentTruck != null ? !currentTruck.equals(that.currentTruck) : that.currentTruck != null) return false;
+//        if (currentTruck != null ? !currentTruck.equals(that.currentTruck) : that.currentTruck != null) return false;
         if (currentCity != null ? !currentCity.equals(that.currentCity) : that.currentCity != null) return false;
 
         return true;
@@ -149,7 +149,7 @@ public class DriverEntity implements Serializable {
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (workedHours != null ? workedHours.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (currentTruck != null ? currentTruck.hashCode() : 0);
+//        result = 31 * result + (currentTruck != null ? currentTruck.hashCode() : 0);
         result = 31 * result + (currentCity != null ? currentCity.hashCode() : 0);
         return result;
     }
@@ -162,7 +162,7 @@ public class DriverEntity implements Serializable {
                 ", lastName=" + lastName + '\'' +
                 ", workedHours=" + workedHours +
                 ", status=" + status +
-                ", currentTruck=" + (currentTruck == null ? "null" : currentTruck.getRegNumber()) +
+//                ", currentTruck=" + (currentTruck == null ? "null" : currentTruck.getRegNumber()) +
                 ", currentCity=" + (currentCity == null ? "null" : currentCity.getName()) +
                 ", order=" + (order == null ? "null" : order.getId()) +
                 '}' + "\n";

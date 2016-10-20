@@ -4,6 +4,8 @@ import com.mkrt4an.dao.DriverDao;
 import com.mkrt4an.dao.OrderDao;
 import com.mkrt4an.dao.TruckDao;
 import com.mkrt4an.entity.OrderEntity;
+import com.mkrt4an.service.CargoService;
+import com.mkrt4an.service.CityService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -41,7 +43,9 @@ public class UpdateOrderServlet extends HttpServlet {
         } else if ("/AddOrder".equals(url)) {
             request.setAttribute("truckAll", tkd.getAllTrucks());
             request.setAttribute("driverAll", drd.getAllDrivers());
-            request.getRequestDispatcher("/AddOrder.jsp").forward(request, response);
+            request.setAttribute("cargoAll", new CargoService().findAll());
+            request.setAttribute("cityAll", new CityService().findAll());
+            request.getRequestDispatcher("/AddOrderStepOne.jsp").forward(request, response);
 
         } else if ("/UpdateOrderServletConfirmed".equals(url)) {
             ore = ord.findOrderById(Integer.parseInt(request.getParameter("id")));

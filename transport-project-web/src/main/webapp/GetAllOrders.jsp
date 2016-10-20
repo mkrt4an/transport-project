@@ -1,4 +1,3 @@
-
 <%@include file="header.jsp" %>
 
 <table border=1 width=1 cellspacing=2 cellpadding=2>
@@ -15,9 +14,9 @@
         <th>
             <c:out value="status"/>
         </th>
-        <%--<th>--%>
-            <%--<c:out value="routePointList"/>--%>
-        <%--</th>--%>
+        <th>
+            <c:out value="routePointList"/>
+        </th>
         <th>
             <c:out value="driverList"/>
         </th>
@@ -43,9 +42,9 @@
         <td>
             <c:out value="${item.status}"/>
         </td>
-        <%--<td>--%>
-            <%--<c:out value="${item.routePointList}"/>--%>
-        <%--</td>--%>
+        <td>
+            <c:out value="${item.routePointList}"/>
+        </td>
         <td>
             <c:out value="${item.driverList}"/>
         </td>

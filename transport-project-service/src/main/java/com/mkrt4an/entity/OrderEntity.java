@@ -26,7 +26,7 @@ public class OrderEntity implements Serializable {
     @Column(name = "status", nullable = true)
     private Integer status;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<RoutePointEntity> routePointList;
 
@@ -60,6 +60,11 @@ public class OrderEntity implements Serializable {
     public OrderEntity(Integer uid, Integer status, List<RoutePointEntity> routePointList) {
         this.uid = uid;
         this.status = status;
+        this.routePointList = routePointList;
+    }
+
+    public OrderEntity(Integer uid, List<RoutePointEntity> routePointList) {
+        this.uid = uid;
         this.routePointList = routePointList;
     }
 

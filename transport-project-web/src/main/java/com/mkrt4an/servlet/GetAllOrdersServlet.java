@@ -2,8 +2,7 @@ package com.mkrt4an.servlet; /**
  * Created by 123 on 04.10.2016.
  */
 
-import com.mkrt4an.dao.OrderDao;
-import com.mkrt4an.entity.OrderEntity;
+import com.mkrt4an.service.OrderService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,9 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
-
-import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 public class GetAllOrdersServlet extends HttpServlet {
 
@@ -25,11 +21,7 @@ public class GetAllOrdersServlet extends HttpServlet {
 
         response.setContentType("text/html");
 
-        OrderDao ord = new OrderDao(getEntityManager());
-
-        List<OrderEntity> orl = ord.getAllOrders();
-
-        request.setAttribute("list", orl);
+        request.setAttribute("list", new OrderService().findAll());
 
         request.getRequestDispatcher("/GetAllOrders.jsp").forward(request, response);
     }

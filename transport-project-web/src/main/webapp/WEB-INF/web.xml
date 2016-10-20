@@ -54,6 +54,10 @@
         <servlet-name>AddNewOrderServlet</servlet-name>
         <servlet-class>com.mkrt4an.servlet.AddNewOrderServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddNewOrderServletStepOne</servlet-name>
+        <servlet-class>com.mkrt4an.servlet.AddNewOrderServletStepOne</servlet-class>
+    </servlet>
 
     <!--GetAllServlets-->
     <servlet>
@@ -151,6 +155,12 @@
         <servlet-name>AddNewOrderServlet</servlet-name>
         <url-pattern>/AddNewOrderServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewOrderServletStepOne</servlet-name>
+        <url-pattern>/AddNewOrderServletStepOne</url-pattern>
+        <url-pattern>/AddNewOrderServletStepTwo</url-pattern>
+        <url-pattern>/AddNewOrderServletStepThree</url-pattern>
+    </servlet-mapping>
 
     <!--GetAllServletMapping-->
     <servlet-mapping>
@@ -219,30 +229,30 @@
         <url-pattern>/AddOrder</url-pattern>
     </servlet-mapping>
 
-    <error-page>
-        <!-- Missing login -->
-        <error-code>401</error-code>
-        <location>/general-error.html</location>
-    </error-page>
-    <error-page>
-        <!-- Forbidden directory listing -->
-        <error-code>403</error-code>
-        <location>/general-error.html</location>
-    </error-page>
-    <error-page>
-        <!-- Missing resource -->
-        <error-code>404</error-code>
-        <location>/Error404.html</location>
-    </error-page>
-    <error-page>
-        <!-- Uncaught exception -->
-        <error-code>500</error-code>
-        <location>/general-error.html</location>
-    </error-page>
-    <error-page>
-        <!-- Unsupported servlet method -->
-        <error-code>503</error-code>
-        <location>/general-error.html</location>
-    </error-page>
+    <!--<error-page>-->
+        <!--&lt;!&ndash; Missing login &ndash;&gt;-->
+        <!--<error-code>401</error-code>-->
+        <!--<location>/general-error.html</location>-->
+    <!--</error-page>-->
+    <!--<error-page>-->
+        <!--&lt;!&ndash; Forbidden directory listing &ndash;&gt;-->
+        <!--<error-code>403</error-code>-->
+        <!--<location>/general-error.html</location>-->
+    <!--</error-page>-->
+    <!--<error-page>-->
+        <!--&lt;!&ndash; Missing resource &ndash;&gt;-->
+        <!--<error-code>404</error-code>-->
+        <!--<location>/Error404.html</location>-->
+    <!--</error-page>-->
+    <!--<error-page>-->
+        <!--&lt;!&ndash; Uncaught exception &ndash;&gt;-->
+        <!--<error-code>500</error-code>-->
+        <!--<location>/general-error.html</location>-->
+    <!--</error-page>-->
+    <!--<error-page>-->
+        <!--&lt;!&ndash; Unsupported servlet method &ndash;&gt;-->
+        <!--<error-code>503</error-code>-->
+        <!--<location>/general-error.html</location>-->
+    <!--</error-page>-->
 
 </web-app>

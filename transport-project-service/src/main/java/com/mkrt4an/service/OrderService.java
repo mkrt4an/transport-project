@@ -1,9 +1,7 @@
 package com.mkrt4an.service;
 
-import com.mkrt4an.dao.DriverDao;
-import com.mkrt4an.dao.OrderDao;
-import com.mkrt4an.dao.RoutePointDao;
-import com.mkrt4an.dao.TruckDao;
+
+import com.mkrt4an.dao.*;
 import com.mkrt4an.entity.*;
 
 import java.util.ArrayList;
@@ -34,15 +32,16 @@ public class OrderService {
         return orderDao.findOrderById(Integer.parseInt(id));
     }
 
+    // Update order
+    public void update(OrderEntity orderEntity) {
+        OrderDao orderDao = new OrderDao(getEntityManager());
+        orderDao.updateOrder(orderEntity);
+    }
 
     //Find all orders
-    public List<OrderEntity> findAllOrders() {
-        List<OrderEntity> orderList = new ArrayList<OrderEntity>();
-        for (OrderEntity od : orderList) {
-            orderList.add(od);
-        }
-
-        return orderList;
+    public List<OrderEntity> findAll() {
+        OrderDao orderDao = new OrderDao(getEntityManager());
+        return orderDao.getAllOrders();
     }
 
     // Get truck suitable for this order
@@ -135,7 +134,7 @@ public class OrderService {
                     && driverEntity.getCurrentCity() == orderEntity.getCurrentTruck().getCurrentCity()
                     ) {
                 suitableDrivetList.add(driverEntity);
-                driverEntity.setCurrentTruck(orderEntity.getCurrentTruck());
+//                driverEntity.setCurrentTruck(orderEntity.getCurrentTruck()); //TODO
             }
         }
 
@@ -144,27 +143,39 @@ public class OrderService {
 
 
     // Add new order by uid, cargoEntity and CityEntity
-    public Integer addOrder(Integer uid, CargoEntity cargoEntity, CityEntity fromCity, CityEntity toCity) {
-        OrderDao orderDao = new OrderDao(getEntityManager());
-
-        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
+    public Integer addOrder(Integer uid, Integer cargoEntityId, Integer fromCityId, Integer toCityId) {
 
         // List of routrPoint which we transfer to orderEntity constructor as argument
         List<RoutePointEntity> routePointEntityList = new ArrayList<RoutePointEntity>();
 
+        // Get DAO
+        OrderDao orderDao = new OrderDao(getEntityManager());
+        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
+        CityDao cityDao = new CityDao(getEntityManager());
+        CargoDao cargoDao = new CargoDao(getEntityManager());
+
+        // Get entities
+        CargoEntity cargoEntity = cargoDao.findCargoById(cargoEntityId);
+        CityEntity fromCityEntity = cityDao.findCityById(fromCityId);
+        CityEntity toCityEntity = cityDao.findCityById(toCityId);
+
         // City, from which we are taking
-        RoutePointEntity routePointEntity = new RoutePointEntity(fromCity, cargoEntity, 1);
+        RoutePointEntity routePointEntity = new RoutePointEntity(fromCityEntity, cargoEntity, 0);
         Integer i = routePointDao.createRoutePoint(routePointEntity);
         routePointEntityList.add(routePointDao.findRoutePointById(i));
 
         // City, in which we are taking
-        routePointEntity = new RoutePointEntity(toCity, cargoEntity, 2);
+        routePointEntity = new RoutePointEntity(toCityEntity, cargoEntity, 1);
         i = routePointDao.createRoutePoint(routePointEntity);
         routePointEntityList.add(routePointDao.findRoutePointById(i));
 
+        //Create order entity
+        OrderEntity orderEntity = new OrderEntity(uid, 0, routePointEntityList);
 
-        OrderEntity orderEntity = new OrderEntity(uid, 1, routePointEntityList);
+        //set order id to routePoints
+        orderEntity.assignRoutePointList(routePointEntityList);
 
+        // return new order id
         return orderDao.createOrder(orderEntity);
     }
 

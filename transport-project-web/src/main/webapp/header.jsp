@@ -29,3 +29,5 @@
         <li><a href="/GetAllOrdersServlet">Get all Orders</a></li>
     </ul>
 </nav>
+
+<div>

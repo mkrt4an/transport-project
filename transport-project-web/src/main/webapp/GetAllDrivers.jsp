@@ -21,9 +21,9 @@
         <th>
             <c:out value="currentCity"/>
         </th>
-        <th>
-            <c:out value="currentTruck"/>
-        </th>
+        <%--<th>--%>
+            <%--<c:out value="currentTruck"/>--%>
+        <%--</th>--%>
         <th>
             <c:out value="status"/>
         </th>
@@ -52,9 +52,9 @@
             <td>
                 <c:out value="${item.currentCity.name}"/>
             </td>
-            <td>
-                <c:out value="${item.currentTruck.regNumber}"/>
-            </td>
+            <%--<td>--%>
+                <%--<c:out value="${item.currentTruck.regNumber}"/>--%>
+            <%--</td>--%>
             <td>
                 <c:out value="${item.status}"/>
             </td>
