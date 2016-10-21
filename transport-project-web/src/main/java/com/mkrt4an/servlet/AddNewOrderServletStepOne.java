@@ -44,8 +44,7 @@ public class AddNewOrderServletStepOne extends HttpServlet {
 
             Integer orderId = orderService.addOrder(uid, cargoId, fromCityId, toCityId);
 
-            OrderEntity orderEntity;
-            orderEntity = orderService.findById(String.valueOf(orderId));
+            OrderEntity orderEntity = orderService.findById(String.valueOf(orderId));
 
             request.setAttribute("id", orderId);
             request.setAttribute("truckAll", orderService.getSuitableTruckList(orderEntity));
@@ -80,8 +79,6 @@ public class AddNewOrderServletStepOne extends HttpServlet {
                 driverEntityList.add(driverService.findById(s));
             }
 
-
-
             OrderEntity orderEntity = orderService.findById(String.valueOf(orderId));
             orderEntity.assignDriverList(driverEntityList);
             orderEntity.assignCurrentTruck(truckService.findById(truckId));
@@ -90,9 +87,5 @@ public class AddNewOrderServletStepOne extends HttpServlet {
 
             request.getRequestDispatcher("/GetAllOrdersServlet").forward(request, response);
         }
-
-
-
-
     }
-    }
+}

@@ -43,10 +43,16 @@
             <c:out value="${item.status}"/>
         </td>
         <td>
-            <c:out value="${item.routePointList}"/>
+            <c:forEach var="item" items="${item.routePointList}">
+                    <c:out value="${item.cargo.name}"/><br>
+            </c:forEach>
         </td>
         <td>
-            <c:out value="${item.driverList}"/>
+            <c:forEach var="item" items="${item.driverList}">
+                <c:out value="${item.firstName}"/>
+                <c:out value=" "/>
+                <c:out value="${item.lastName}"/>
+            </c:forEach>
         </td>
         <td>
             <c:out value="${item.currentTruck.regNumber}"/>
