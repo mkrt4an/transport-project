@@ -45,7 +45,8 @@ public class UpdateOrderServlet extends HttpServlet {
             request.setAttribute("driverAll", drd.getAllDrivers());
             request.setAttribute("cargoAll", new CargoService().findAll());
             request.setAttribute("cityAll", new CityService().findAll());
-            request.getRequestDispatcher("/AddOrderStepOne.jsp").forward(request, response);
+//            request.getRequestDispatcher("/AddOrderStepOne.jsp").forward(request, response);
+            request.getRequestDispatcher("/RP.jsp").forward(request, response);
 
         } else if ("/UpdateOrderServletConfirmed".equals(url)) {
             ore = ord.findOrderById(Integer.parseInt(request.getParameter("id")));

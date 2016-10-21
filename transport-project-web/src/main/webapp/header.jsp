@@ -22,8 +22,8 @@
         <li><a href="/AddDriver">Add New Driver</a></li>
         <li><a href="/AddTruck">Add New Truck</a></li>
         <li><a href="/AddCargo">Add New Cargo</a></li>
-        <%--<li><a href="/AddOrder">Add New Order</a></li>--%>
-        <li><a href="/RP.jsp">Add New Order</a></li>
+        <li><a href="/AddOrder">Add New Order</a></li>
+        <%--<li><a href="/RP.jsp">Add New Order</a></li>--%>
         <li><a href="/GetAllDriversServlet">Get all Drivers</a></li>
         <li><a href="/GetAllTrucksServlet">Get all Trucks</a></li>
         <li><a href="/GetAllCargoServlet">Get all Cargoes</a></li>

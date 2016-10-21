@@ -4,10 +4,11 @@
 <div id="city">
     City
 
-<input list="browsers" name="browser">
-<datalist id="browsers">
-    <c:forEach var="item" items="${allCity}">
-    <option value="${item.id}">
+<input list="cityList" name="city">
+<datalist id="cityList">
+    <c:forEach var="item" items="${cityAll}">
+    <option value="${item.name}">
+        <%--<c:out value="${item.name}"/>--%>
         </c:forEach>
 </datalist>
 

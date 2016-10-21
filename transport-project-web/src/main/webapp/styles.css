@@ -5,14 +5,12 @@
 
 body {
     width: 100%;
-    margin: 0px
-    /*auto;*/
+    margin: 0px auto;
 }
 
 div {
     width: 900px;
-    margin: 0px
-    /*auto;*/
+    margin: 0px auto;
 }
 
 header.mainH {
