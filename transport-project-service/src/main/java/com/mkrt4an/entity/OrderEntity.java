@@ -34,8 +34,8 @@ public class OrderEntity implements Serializable {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<DriverEntity> driverList;
 
-    @OneToOne(mappedBy = "orders")
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToOne
+    @JoinColumn(name= "truck_id")
     private TruckEntity currentTruck;
 
 
@@ -138,10 +138,10 @@ public class OrderEntity implements Serializable {
         }
     }
 
-    public void assignCurrentTruck(TruckEntity currentTruck) {
-        this.currentTruck = currentTruck;
-        currentTruck.setOrders(this);
-    }
+//    public void assignCurrentTruck(TruckEntity currentTruck) {
+//        this.currentTruck = currentTruck;
+//        currentTruck.setOrders(this);
+//    }
 
 
     @Override

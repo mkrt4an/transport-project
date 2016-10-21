@@ -1,7 +1,11 @@
 package com.mkrt4an.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by 123 on 02.10.2016.
@@ -31,16 +35,13 @@ public class TruckEntity implements Serializable {
     @JoinColumn(name = "city_id")
     private CityEntity currentCity;
 
-    @OneToOne
-    @JoinColumn(name= "orders_id")
-    private OrderEntity orders;
+    @OneToMany (mappedBy = "currentTruck")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<OrderEntity> orders;
 
 //    @OneToMany(mappedBy = "currentTruck")
-//    @LazyCollection(LazyCollectionOption.FALSE)
-//    private List<DriverEntity> driverList;
 
     public TruckEntity(){}
-
 
     public TruckEntity(Integer dutySize, Integer capasity, Integer status, String regNumber, CityEntity currentCity) {
         this.dutySize = dutySize;
@@ -50,6 +51,7 @@ public class TruckEntity implements Serializable {
         this.currentCity = currentCity;
     }
 
+
     public Integer getId() {
         return id;
     }
@@ -57,51 +59,54 @@ public class TruckEntity implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+
     public Integer getDutySize() {
         return dutySize;
     }
-
     public void setDutySize(Integer dutySize) {
         this.dutySize = dutySize;
     }
+
     public Integer getCapasity() {
         return capasity;
     }
-
     public void setCapasity(Integer capasity) {
         this.capasity = capasity;
     }
+
     public Integer getStatus() {
         return status;
     }
-
     public void setStatus(Integer status) {
         this.status = status;
     }
+
     public String getRegNumber() {
         return regNumber;
     }
-
     public void setRegNumber(String regNumber) {
         this.regNumber = regNumber;
     }
-    public CityEntity getCurrentCity() { return currentCity; }
 
+    public CityEntity getCurrentCity() { return currentCity; }
     public void setCurrentCity(CityEntity currentCity) { this.currentCity = currentCity; }
-    public OrderEntity getOrders() {
+    //    }
+//        this.driverList = driverList;
+//    public void setDriverList(List<DriverEntity> driverList) {
+//    }
+//        return driverList;
+//    private List<DriverEntity> driverList;
+//    @LazyCollection(LazyCollectionOption.FALSE)
+
+    public List<OrderEntity> getOrders() {
         return orders;
     }
-
-    public void setOrders(OrderEntity order) {
-        this.orders = order;
+    public void setOrders(List<OrderEntity> orders) {
+        this.orders = orders;
     }
 
+
 //    public List<DriverEntity> getDriverList() {
-//        return driverList;
-//    }
-//    public void setDriverList(List<DriverEntity> driverList) {
-//        this.driverList = driverList;
-//    }
 
     @Override
     public boolean equals(Object o) {
@@ -138,7 +143,7 @@ public class TruckEntity implements Serializable {
                 ", status=" + status +
                 ", regNumber=" + regNumber + '\'' +
                 ", currentCity=" + currentCity.getName() +
-                ", order=" + (orders == null ? "null" : orders.getId()) +
+                ", order=" + (orders == null ? "null" : orders) +
                 '}' + "\n";
     }
 }

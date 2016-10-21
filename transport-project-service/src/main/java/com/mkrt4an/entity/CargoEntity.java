@@ -28,11 +28,12 @@ public class CargoEntity implements Serializable {
     @Column(name = "status", nullable = false)
     private Integer status;
 
-
     @OneToMany(mappedBy = "cargo")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<RoutePointEntity> routePointList;
 
+
+    // Cosnrucrors
     public CargoEntity(){
     }
 
