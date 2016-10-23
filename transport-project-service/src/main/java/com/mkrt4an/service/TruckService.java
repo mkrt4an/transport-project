@@ -26,4 +26,17 @@ public class TruckService {
         return truckDao.getAllTrucks();
     }
 
+    public void deleteById(Integer Id) {
+        TruckDao truckDao = new TruckDao(getEntityManager());
+//        TruckEntity truckEntity = truckDao.findTruckById(Id);
+        truckDao.deleteTruck(truckDao.findTruckById(Id));
+    }
+
+    public void deleteById(String Id) {
+        TruckDao truckDao = new TruckDao(getEntityManager());
+//        TruckEntity truckEntity = ;
+        truckDao.deleteTruck(truckDao.findTruckById(Integer.parseInt(Id)));
+    }
+
+
 }

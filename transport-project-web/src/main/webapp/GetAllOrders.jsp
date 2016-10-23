@@ -43,15 +43,19 @@
             <c:out value="${item.status}"/>
         </td>
         <td>
-            <c:forEach var="item" items="${item.routePointList}">
-                    <c:out value="${item.cargo.name}"/><br>
+            <c:forEach var="item3" items="${item.routePointList}">
+                <c:out value="${item3.city.name}"/>
+                <c:out value=" "/>
+                <c:out value="${item3.ordinal}"/>
+                <br>
             </c:forEach>
         </td>
         <td>
-            <c:forEach var="item" items="${item.driverList}">
-                <c:out value="${item.firstName}"/>
+            <c:forEach var="item2" items="${item.driverList}">
+                <c:out value="${item2.firstName}"/>
                 <c:out value=" "/>
-                <c:out value="${item.lastName}"/>
+                <c:out value="${item2.lastName}"/>
+                <br>
             </c:forEach>
         </td>
         <td>

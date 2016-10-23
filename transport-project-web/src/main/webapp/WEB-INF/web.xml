@@ -227,6 +227,12 @@
         <url-pattern>/UpdateOrderServlet</url-pattern>
         <url-pattern>/UpdateOrderServletConfirmed</url-pattern>
         <url-pattern>/AddOrder</url-pattern>
+        <url-pattern>/test</url-pattern>
+        <url-pattern>/route-point</url-pattern>
+        <url-pattern>/route-point/*</url-pattern>
+        <url-pattern>/new-cargo</url-pattern>
+        <url-pattern>/ready</url-pattern>
+        <url-pattern>/new-city</url-pattern>
     </servlet-mapping>
 
     <!--<error-page>-->

@@ -14,11 +14,11 @@ import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 public class TestServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-                                                throws ServletException, IOException {
+            throws ServletException, IOException {
 
         response.setContentType("text/html");
 
-        PrintWriter out=response.getWriter();
+        PrintWriter out = response.getWriter();
 
 //        request.getRequestDispatcher("link.html").include(request, response);
 
@@ -26,10 +26,13 @@ public class TestServlet extends HttpServlet {
 //        ck.setMaxAge(0);
 //        response.addCookie(ck);
 
-        CargoDao cargo =   new CargoDao(getEntityManager());
+        Integer integer = Integer.parseInt(request.getParameter("id"));
+
+        CargoDao cargo = new CargoDao(getEntityManager());
 
 //        CargoDao cgd;
 
-        out.print(cargo.findCargoById(2));
+
+        out.print(cargo.findCargoById(integer));
     }
 }

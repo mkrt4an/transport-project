@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="styles.css" />
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+    <script   src="http://code.jquery.com/jquery-3.1.1.js"   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="   crossorigin="anonymous"></script><script src="jScript.js"></script>
 </head>
 <body>
 

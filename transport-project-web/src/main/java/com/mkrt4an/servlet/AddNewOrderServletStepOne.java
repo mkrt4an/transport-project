@@ -34,42 +34,44 @@ public class AddNewOrderServletStepOne extends HttpServlet {
 
 //        OrderEntity orderEntity = null;
 
-
         if ("/AddNewOrderServletStepOne".equals(url)) {
 
             Integer uid = Integer.parseInt(request.getParameter("uid"));
             Integer cargoId = Integer.parseInt(request.getParameter("cargoId"));
             Integer fromCityId = Integer.parseInt(request.getParameter("fromCityId"));
             Integer toCityId = Integer.parseInt(request.getParameter("toCityId"));
+            Integer orderId = Integer.parseInt(request.getParameter("orderId"));
 
-            Integer orderId = orderService.addOrder(uid, cargoId, fromCityId, toCityId);
+//            Integer orderId = orderService.addOrder(uid, cargoId, fromCityId, toCityId);
 
             OrderEntity orderEntity = orderService.findById(String.valueOf(orderId));
 
-            request.setAttribute("id", orderId);
-            request.setAttribute("truckAll", orderService.getSuitableTruckList(orderEntity));
+            request.setAttribute("orderId", orderId);
+//            request.setAttribute("truckAll", orderService.getSuitableTruckList(orderEntity));
+            request.setAttribute("truckAll", new TruckService().findAllTrucks());
 
             request.getRequestDispatcher("/AddOrderStepTwo.jsp").forward(request, response);
 
         } else if ("/AddNewOrderServletStepTwo".equals(url)) {
 
-            Integer orderId = Integer.parseInt(request.getParameter("id"));
+            Integer orderId = Integer.parseInt(request.getParameter("orderId"));
             String truckId = request.getParameter("truckId");
 
             OrderEntity orderEntity = orderService.findById(String.valueOf(orderId));
 
             orderEntity.setCurrentTruck(truckService.findById(truckId));
+            orderService.update(orderEntity);
 
-
-            request.setAttribute("id", orderId);
+            request.setAttribute("orderId", orderId);
             request.setAttribute("truckId", truckId);
             request.setAttribute("currentTruckDutySize", truckService.findById(String.valueOf(truckId)).getDutySize());
             request.setAttribute("driverAll", orderService.getSuitableDriverList(orderEntity));
+
             request.getRequestDispatcher("/AddOrderStepThree.jsp").forward(request, response);
 
         } else if ("/AddNewOrderServletStepThree".equals(url)) {
 
-            Integer orderId = Integer.parseInt(request.getParameter("id"));
+            Integer orderId = Integer.parseInt(request.getParameter("orderId"));
             String truckId = request.getParameter("truckId");
 
             String[] driverIdList = request.getParameterValues("driverId");
@@ -81,7 +83,7 @@ public class AddNewOrderServletStepOne extends HttpServlet {
 
             OrderEntity orderEntity = orderService.findById(String.valueOf(orderId));
             orderEntity.assignDriverList(driverEntityList);
-            orderEntity.assignCurrentTruck(truckService.findById(truckId));
+//            orderEntity.assignCurrentTruck(truckService.findById(truckId));
 
             orderService.update(orderEntity);
 

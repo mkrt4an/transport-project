@@ -17,9 +17,10 @@ public class CargoDao {
 
     }
 
-    public CargoDao() {}
+    public CargoDao() {
+    }
 
-    public CargoDao(EntityManager em){
+    public CargoDao(EntityManager em) {
         this.em = em;
     }
 
@@ -32,7 +33,7 @@ public class CargoDao {
     }
 
     //Get all cargo list
-    public List<CargoEntity> getAllCargo () {
+    public List<CargoEntity> getAllCargo() {
 //        EntityManager em = getEntityManager();
         List<CargoEntity> cgl = em.createQuery("select c from CargoEntity c", CargoEntity.class).getResultList();
 //        em.close();
@@ -40,7 +41,7 @@ public class CargoDao {
     }
 
     //Create
-    public Integer createCargo(CargoEntity cg){
+    public Integer createCargo(CargoEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
@@ -51,7 +52,7 @@ public class CargoDao {
     }
 
     //Update
-    public void updateCargo(CargoEntity cg){
+    public void updateCargo(CargoEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
@@ -60,7 +61,7 @@ public class CargoDao {
     }
 
     //Delete
-    public void deleteCargo (CargoEntity cg){
+    public void deleteCargo(CargoEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.remove(cg);

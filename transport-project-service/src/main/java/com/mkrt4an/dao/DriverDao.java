@@ -13,9 +13,10 @@ public class DriverDao {
 
     private EntityManager em;
 
-    public DriverDao(){}
+    public DriverDao() {
+    }
 
-    public DriverDao(EntityManager em){
+    public DriverDao(EntityManager em) {
         this.em = em;
     }
 
@@ -28,7 +29,7 @@ public class DriverDao {
     }
 
     //Get all cargo list
-    public List<DriverEntity> getAllDrivers () {
+    public List<DriverEntity> getAllDrivers() {
 //        EntityManager em = getEntityManager();
         List<DriverEntity> cgl;
         cgl = em.createQuery("select c from DriverEntity c", DriverEntity.class).getResultList();
@@ -37,7 +38,7 @@ public class DriverDao {
     }
 
     //Create
-    public void createDriver(DriverEntity cg){
+    public void createDriver(DriverEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
@@ -46,7 +47,7 @@ public class DriverDao {
     }
 
     //Update
-    public void updateDriver(DriverEntity cg){
+    public void updateDriver(DriverEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
@@ -55,7 +56,7 @@ public class DriverDao {
     }
 
     //Delete
-    public void deleteDriver (DriverEntity cg){
+    public void deleteDriver(DriverEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.remove(cg);

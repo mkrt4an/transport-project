@@ -1,7 +1,7 @@
 <%@include file="header.jsp" %>
 
 <form action="/AddNewOrderServletStepThree" method="get">
-    <input type="hidden" name="id" value="${id}" />
+    <input type="hidden" name="orderId" value="${orderId}" />
     <input type="hidden" name="truckId" value="${truckId}" />
     <%--uid:<br>--%>
     <%--<input type="text" name="uid" value="${order.uid}"/><br><br>--%>

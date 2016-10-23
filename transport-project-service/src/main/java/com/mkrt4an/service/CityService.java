@@ -21,5 +21,17 @@ public class CityService {
         return cityDao.getAllCities();
     }
 
+    // Find by id
+    public CityEntity findById(String id) {
+        CityDao cityDao = new CityDao(getEntityManager());
+        return cityDao.findCityById(Integer.parseInt(id));
+    }
+
+    // Find by id
+    public CityEntity findById(Integer id) {
+        CityDao cityDao = new CityDao(getEntityManager());
+        return cityDao.findCityById(id);
+    }
+
 
 }

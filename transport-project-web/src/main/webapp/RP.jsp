@@ -1,75 +1,101 @@
 <%@include file="header.jsp" %>
 
 <h1>RoutePoint</h1>
+
+
 <div id="city">
-    City
-
-<input list="cityList" name="city">
-<datalist id="cityList">
-    <c:forEach var="item" items="${cityAll}">
-    <option value="${item.name}">
-        <%--<c:out value="${item.name}"/>--%>
+    <form name="NewCity" action="/new-city">
+    City:
+    <select id="cityListMain" name="cityId" required>
+        <option disabled selected value> -- select a city -- </option>
+        <c:forEach var="item" items="${cityAll}">
+            <option value="${item.id}"
+                    <c:if test="${item.id==routePoint.city.id}">
+                        <c:out value="selected"/>
+                    </c:if>>
+                <c:out value="${item.name}"/>
+            </option>
         </c:forEach>
-</datalist>
+    </select>
+        <input id="citySubmit" type="submit" value="ADD" name=""/>
 
-
-
-
+        <input hidden name="routePointId" value="${routePointId}"/>
+        <input hidden name="orderId" value="${orderId}"/>
+    </form>
 </div>
 
 <hr>
 
 <div id="main">
     <div id="load">
-        <form  label="asdasd" title="dsfsdf" name="" action="" >
+        <form name="NewLoad" action="/new-cargo">
             New load<br><br>
-            name <input type="text" required name="" value=""/><br/><br>
-            weight<input type="number" required name="" value=""/><br/><br>
-            <input type="submit" value="ADD" name="" />
+
+            name: <input id="input" type="text" required name="cargoName"/><br/><br>
+            weight: <input id="number" type="number" required name="cargoWeight" value=""/><br/><br>
+
+            <input hidden name="routePointId" value="${routePointId}"/>
+            <input hidden name="cityId" value="${cityId}"/>
+            <input hidden name="orderId" value="${orderId}"/>
+
+            <input id="cargoSubmit" type="submit" value="ADD" name=""/>
         </form>
     </div>
-    <div id="added" >
+
+
+    <div id="added">
         added<br><br>
         <table border="1px">
             <tr>
                 <th>name</th>
                 <th>weight</th>
             </tr>
-            <tr>
-                <td>asdasd</td>
-                <td>asdasd</td>
-            </tr>
-            <tr>
-                <td>tyty</td>
-                <td>tytyt</td>
-            </tr>
-
+            <c:forEach var="item" items="${cargoToLoadList}">
+                <tr>
+                    <td><c:out value="${item.name}"/></td>
+                    <td><c:out value="${item.weight}"/></td>
+                </tr>
+            </c:forEach>
         </table>
     </div>
 </div>
 
 <hr>
+
 <div id="delivery">
     delivery <br>
     <table border=1px>
         <tr>
-            <td><input type="checkbox"></td>
-            <td>sdfsdfsdf</td>
+            <th>Check</th>
+            <th>name</th>
+            <th>weight</th>
         </tr>
-        <tr>
-            <td><input type="checkbox"></td>
-            <td>sdfsdfsdf</td>
-        </tr>
-        <tr>
-            <td><input type="checkbox"></td>
-            <td>sdfsdfsdf</td>
-        </tr>
+        <c:forEach var="item" items="${cargoToLoadList}">
+            <tr>
+                <td><input type="checkbox"></td>
+                <td><c:out value="${item.name}"/></td>
+                <td><c:out value="${item.weight}"/></td>
+            </tr>
+        </c:forEach>
     </table>
 </div>
+
 <hr>
+
 <div>
-    <input type="submit" value="ADD RP" name="ADD RP"/>
-    <input type="button" value="READY" name="READY"/>
+    <form name="NewRoutePoint" action="/route-point">
+        <input hidden name="routePointId" value="${routePointId}"/>
+        <input hidden name="cityId" value="${cityId}"/>
+        <input hidden name="orderId" value="${orderId}"/>
+        <input id="routePointSubmit" type="submit" value="ADD RP" name="ADD RP"/>
+    </form>
+
+    <form name="ready" action="/ready">
+        <input hidden name="routePointId" value="${routePointId}"/>
+        <input hidden name="cityId" value="${cityId}"/>
+        <input hidden name="orderId" value="${orderId}"/>
+        <input id="ready" type="submit" value="READY" name="READY"/>
+    </form>
 </div>
 
 

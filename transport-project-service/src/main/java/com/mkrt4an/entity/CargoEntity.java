@@ -1,11 +1,7 @@
 package com.mkrt4an.entity;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by 123 on 02.10.2016.
@@ -28,34 +24,43 @@ public class CargoEntity implements Serializable {
     @Column(name = "status", nullable = false)
     private Integer status;
 
-    @OneToMany(mappedBy = "cargo")
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<RoutePointEntity> routePointList;
+    @ManyToOne
+    @JoinColumn(name = "loading_rp_id")
+    private RoutePointEntity loadingRoutePoint;
 
+    @ManyToOne
+    @JoinColumn(name = "delivery_rp_id")
+    private RoutePointEntity deliveryRoutePoint;
 
-    // Cosnrucrors
-    public CargoEntity(){
+    // Constructors
+    public CargoEntity() {
     }
 
-    public CargoEntity(String name, Integer weight, Integer status){
+    public CargoEntity(String name, Integer weight, Integer status) {
         this.name = name;
         this.weight = weight;
         this.status = status;
 //        this.routePoint = routePoint;
     }
 
-    public CargoEntity(Integer id, String name, Integer weight, Integer status){
-        this.id = id;
+    public CargoEntity(String name, Integer weight,
+                       Integer status,
+                       RoutePointEntity loadingRoutePoint,
+                       RoutePointEntity deliveryRoutePoint
+    ) {
         this.name = name;
         this.weight = weight;
         this.status = status;
-//        this.routePoint = routePoint;
+        this.loadingRoutePoint = loadingRoutePoint;
+        this.deliveryRoutePoint = deliveryRoutePoint;
     }
 
 
+    // Getters & Setters
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -63,6 +68,7 @@ public class CargoEntity implements Serializable {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -70,6 +76,7 @@ public class CargoEntity implements Serializable {
     public Integer getWeight() {
         return weight;
     }
+
     public void setWeight(Integer weight) {
         this.weight = weight;
     }
@@ -77,22 +84,26 @@ public class CargoEntity implements Serializable {
     public Integer getStatus() {
         return status;
     }
+
     public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public List<RoutePointEntity> getRoutePointList() {
-        return routePointList;
-    }
-    public void setRoutePointList(List<RoutePointEntity> routePointList) {
-        this.routePointList = routePointList;
+    public RoutePointEntity getDeliveryRoutePoint() {
+        return deliveryRoutePoint;
     }
 
+    public void setDeliveryRoutePoint(RoutePointEntity deliveryRoutePoint) {
+        this.deliveryRoutePoint = deliveryRoutePoint;
+    }
 
-    //Constructors
-//    CargoEntity(){
-//
-//    }
+    public RoutePointEntity getLoadingRoutePoint() {
+        return loadingRoutePoint;
+    }
+
+    public void setLoadingRoutePoint(RoutePointEntity loadingRoutePoint) {
+        this.loadingRoutePoint = loadingRoutePoint;
+    }
 
 
     @Override

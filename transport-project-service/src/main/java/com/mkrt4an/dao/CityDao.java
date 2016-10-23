@@ -13,9 +13,10 @@ import java.util.List;
 public class CityDao {
     private EntityManager em;
 
-    CityDao(){}
+    CityDao() {
+    }
 
-    public CityDao(EntityManager em){
+    public CityDao(EntityManager em) {
         this.em = em;
     }
 
@@ -29,7 +30,7 @@ public class CityDao {
     }
 
     //Get all Order list
-    public List<CityEntity> getAllCities () {
+    public List<CityEntity> getAllCities() {
 //        EntityManager em = getEntityManager();
         List<CityEntity> cgl;
         cgl = em.createQuery("select c from CityEntity c", CityEntity.class).getResultList();
@@ -38,7 +39,7 @@ public class CityDao {
     }
 
     //Create
-    public void createCity(CityEntity cg){
+    public void createCity(CityEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
@@ -48,7 +49,7 @@ public class CityDao {
     }
 
     //Update
-    public void updateCity(CityEntity cg){
+    public void updateCity(CityEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
@@ -57,14 +58,13 @@ public class CityDao {
     }
 
     //Delete
-    public void deleteCity (CityEntity cg){
+    public void deleteCity(CityEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.remove(cg);
         em.getTransaction().commit();
 //        em.close();
     }
-
 
 
 }

@@ -29,19 +29,19 @@ public class CityEntity implements Serializable {
     @Column(name = "y", nullable = false, length = 11)
     private Integer y;
 
-    @OneToMany
-    (mappedBy = "city")
+    @OneToMany(mappedBy = "city")
     private List<RoutePointEntity> routePointList;
 
-    @OneToMany (mappedBy = "currentCity")
+    @OneToMany(mappedBy = "currentCity")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<DriverEntity> driverList;
 
-    @OneToMany (mappedBy = "currentCity")
+    @OneToMany(mappedBy = "currentCity")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<TruckEntity> truckList;
 
-    public CityEntity(){}
+    public CityEntity() {
+    }
 
 
     public CityEntity(String name, Integer x, Integer y) {
@@ -54,6 +54,7 @@ public class CityEntity implements Serializable {
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -61,6 +62,7 @@ public class CityEntity implements Serializable {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -68,6 +70,7 @@ public class CityEntity implements Serializable {
     public Integer getX() {
         return x;
     }
+
     public void setX(Integer x) {
         this.x = x;
     }
@@ -75,6 +78,7 @@ public class CityEntity implements Serializable {
     public Integer getY() {
         return y;
     }
+
     public void setY(Integer y) {
         this.y = y;
     }
@@ -82,6 +86,7 @@ public class CityEntity implements Serializable {
     public List<RoutePointEntity> getRoutePointList() {
         return routePointList;
     }
+
     public void setRoutePointList(List<RoutePointEntity> routePointList) {
         this.routePointList = routePointList;
     }
@@ -89,6 +94,7 @@ public class CityEntity implements Serializable {
     public List<DriverEntity> getDriverList() {
         return driverList;
     }
+
     public void setDriverList(List<DriverEntity> driverList) {
         this.driverList = driverList;
     }
@@ -96,6 +102,7 @@ public class CityEntity implements Serializable {
     public List<TruckEntity> getTruckList() {
         return truckList;
     }
+
     public void setTruckList(List<TruckEntity> truckList) {
         this.truckList = truckList;
     }

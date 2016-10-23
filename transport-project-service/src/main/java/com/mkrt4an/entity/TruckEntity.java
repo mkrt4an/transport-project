@@ -35,13 +35,14 @@ public class TruckEntity implements Serializable {
     @JoinColumn(name = "city_id")
     private CityEntity currentCity;
 
-    @OneToMany (mappedBy = "currentTruck")
+    @OneToMany(mappedBy = "currentTruck")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<OrderEntity> orders;
 
 //    @OneToMany(mappedBy = "currentTruck")
 
-    public TruckEntity(){}
+    public TruckEntity() {
+    }
 
     public TruckEntity(Integer dutySize, Integer capasity, Integer status, String regNumber, CityEntity currentCity) {
         this.dutySize = dutySize;
@@ -63,6 +64,7 @@ public class TruckEntity implements Serializable {
     public Integer getDutySize() {
         return dutySize;
     }
+
     public void setDutySize(Integer dutySize) {
         this.dutySize = dutySize;
     }
@@ -70,6 +72,7 @@ public class TruckEntity implements Serializable {
     public Integer getCapasity() {
         return capasity;
     }
+
     public void setCapasity(Integer capasity) {
         this.capasity = capasity;
     }
@@ -77,6 +80,7 @@ public class TruckEntity implements Serializable {
     public Integer getStatus() {
         return status;
     }
+
     public void setStatus(Integer status) {
         this.status = status;
     }
@@ -84,12 +88,18 @@ public class TruckEntity implements Serializable {
     public String getRegNumber() {
         return regNumber;
     }
+
     public void setRegNumber(String regNumber) {
         this.regNumber = regNumber;
     }
 
-    public CityEntity getCurrentCity() { return currentCity; }
-    public void setCurrentCity(CityEntity currentCity) { this.currentCity = currentCity; }
+    public CityEntity getCurrentCity() {
+        return currentCity;
+    }
+
+    public void setCurrentCity(CityEntity currentCity) {
+        this.currentCity = currentCity;
+    }
     //    }
 //        this.driverList = driverList;
 //    public void setDriverList(List<DriverEntity> driverList) {
@@ -101,6 +111,7 @@ public class TruckEntity implements Serializable {
     public List<OrderEntity> getOrders() {
         return orders;
     }
+
     public void setOrders(List<OrderEntity> orders) {
         this.orders = orders;
     }

@@ -35,11 +35,16 @@ public class OrderEntity implements Serializable {
     private List<DriverEntity> driverList;
 
     @ManyToOne
-    @JoinColumn(name= "truck_id")
+    @JoinColumn(name = "truck_id")
     private TruckEntity currentTruck;
 
 
+    //  Constructors
     public OrderEntity() {
+    }
+
+    public OrderEntity(Integer uid) {
+        this.uid = uid;
     }
 
     public OrderEntity(Integer uid, Integer status, List<RoutePointEntity> routePointList,
@@ -75,6 +80,8 @@ public class OrderEntity implements Serializable {
 
     }
 
+
+    // Getters & Setters
     public Integer getId() {
         return id;
     }
@@ -175,7 +182,7 @@ public class OrderEntity implements Serializable {
                 ", routePointList=" + routePointList +
                 ", driverList=" + driverList +
 //                ", currentTruck=" + currentTruck.getRegNumber() +
-                ", currentTruck=" + (currentTruck == null ? "null" : currentTruck.getId()) +
+                ", currentTruck=" + (currentTruck == null ? "null" : currentTruck.getRegNumber()) +
                 '}' + "\n";
     }
 }

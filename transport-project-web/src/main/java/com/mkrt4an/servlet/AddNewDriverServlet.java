@@ -29,8 +29,8 @@ public class AddNewDriverServlet extends HttpServlet {
         String lastName = request.getParameter("lastName");
         Integer workedHours = Integer.parseInt(request.getParameter("workedHours"));
         Integer status = Integer.parseInt(request.getParameter("status"));
-        Integer cityId =  Integer.parseInt(request.getParameter("city"));
-        Integer currentTruckId  =  Integer.parseInt(request.getParameter("currentTruck"));
+        Integer cityId = Integer.parseInt(request.getParameter("city"));
+        Integer currentTruckId = Integer.parseInt(request.getParameter("currentTruck"));
 
         DriverDao drd = new DriverDao(getEntityManager());
         CityDao ctd = new CityDao(getEntityManager());

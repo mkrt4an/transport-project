@@ -13,9 +13,10 @@ public class OrderDao {
 
     private EntityManager em;
 
-    public OrderDao(){}
+    public OrderDao() {
+    }
 
-    public OrderDao(EntityManager em){
+    public OrderDao(EntityManager em) {
         this.em = em;
     }
 
@@ -28,7 +29,7 @@ public class OrderDao {
     }
 
     //Get all Order list
-    public List<OrderEntity> getAllOrders () {
+    public List<OrderEntity> getAllOrders() {
 //        EntityManager em = getEntityManager();
         List<OrderEntity> cgl;
         cgl = em.createQuery("select c from OrderEntity c", OrderEntity.class).getResultList();
@@ -37,7 +38,7 @@ public class OrderDao {
     }
 
     //Create
-    public Integer createOrder(OrderEntity cg){
+    public Integer createOrder(OrderEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
@@ -48,7 +49,7 @@ public class OrderDao {
     }
 
     //Update
-    public void updateOrder(OrderEntity cg){
+    public void updateOrder(OrderEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
@@ -57,7 +58,7 @@ public class OrderDao {
     }
 
     //Delete
-    public void deleteOrder (OrderEntity cg){
+    public void deleteOrder(OrderEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.remove(cg);

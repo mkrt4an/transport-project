@@ -54,7 +54,7 @@ public class UpdateDriverServlet extends HttpServlet {
             String lastName = request.getParameter("lastName");
             Integer workedHours = Integer.parseInt(request.getParameter("workedHours"));
             Integer status = Integer.parseInt(request.getParameter("status"));
-            Integer cityId =  Integer.parseInt(request.getParameter("city"));
+            Integer cityId = Integer.parseInt(request.getParameter("city"));
             Integer currentTruckId = Integer.parseInt(request.getParameter("currentTruck"));
 
             dre.setFirstName(firstName);

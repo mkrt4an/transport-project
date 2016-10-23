@@ -12,9 +12,10 @@ import java.util.List;
 public class PassportDao {
     private EntityManager em;
 
-    public PassportDao (){}
+    public PassportDao() {
+    }
 
-    public PassportDao(EntityManager em){
+    public PassportDao(EntityManager em) {
         this.em = em;
     }
 
@@ -26,14 +27,14 @@ public class PassportDao {
     }
 
     //Get all cargo list
-    public List<PassportEntity> getAll () {
+    public List<PassportEntity> getAll() {
         List<PassportEntity> cgl;
         cgl = em.createQuery("select c from PassportEntity c", PassportEntity.class).getResultList();
         return cgl;
     }
 
     //Create
-    public void create(PassportEntity cg){
+    public void create(PassportEntity cg) {
         em.getTransaction().begin();
         em.persist(cg);
         em.getTransaction().commit();
@@ -42,7 +43,7 @@ public class PassportDao {
     }
 
     //Update
-    public void update(PassportEntity cg){
+    public void update(PassportEntity cg) {
         em.getTransaction().begin();
         em.persist(cg);
         em.getTransaction().commit();
@@ -50,7 +51,7 @@ public class PassportDao {
     }
 
     //Delete
-    public void delete (PassportEntity cg){
+    public void delete(PassportEntity cg) {
         em.getTransaction().begin();
         em.remove(cg);
         em.getTransaction().commit();

@@ -13,9 +13,10 @@ public class TruckDao {
 
     private EntityManager em;
 
-    public TruckDao(){}
+    public TruckDao() {
+    }
 
-    public TruckDao(EntityManager em){
+    public TruckDao(EntityManager em) {
         this.em = em;
     }
 
@@ -28,7 +29,7 @@ public class TruckDao {
     }
 
     //Get all cargo list
-    public List<TruckEntity> getAllTrucks () {
+    public List<TruckEntity> getAllTrucks() {
 //        EntityManager em = getEntityManager();
         List<TruckEntity> cgl;
         cgl = em.createQuery("select c from TruckEntity c", TruckEntity.class).getResultList();
@@ -37,7 +38,7 @@ public class TruckDao {
     }
 
     //Create
-    public void createTruck(TruckEntity cg){
+    public void createTruck(TruckEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
@@ -46,7 +47,7 @@ public class TruckDao {
     }
 
     //Update
-    public void updateTruck(TruckEntity cg){
+    public void updateTruck(TruckEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
@@ -55,7 +56,7 @@ public class TruckDao {
     }
 
     //Delete
-    public void deleteTruck (TruckEntity cg){
+    public void deleteTruck(TruckEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.remove(cg);

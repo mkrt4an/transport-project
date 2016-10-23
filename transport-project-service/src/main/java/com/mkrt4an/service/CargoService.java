@@ -1,6 +1,7 @@
 package com.mkrt4an.service;
 
 import com.mkrt4an.dao.CargoDao;
+import com.mkrt4an.dao.RoutePointDao;
 import com.mkrt4an.entity.CargoEntity;
 
 import java.util.List;
@@ -16,7 +17,32 @@ public class CargoService {
     //Add new
     public Integer addNew(String name, String weight, String status) {
         CargoDao cargoDao = new CargoDao(getEntityManager());
-        CargoEntity cargoEntity = new CargoEntity(name, Integer.parseInt(weight) ,Integer.parseInt(status));
+        CargoEntity cargoEntity = new CargoEntity(name, Integer.parseInt(weight), Integer.parseInt(status));
+        cargoDao.createCargo(cargoEntity);
+        return cargoEntity.getId();
+    }
+
+    //Add new
+    public Integer addNew(String name, Integer weight, Integer status) {
+        CargoDao cargoDao = new CargoDao(getEntityManager());
+        CargoEntity cargoEntity = new CargoEntity(name, weight, status);
+        cargoDao.createCargo(cargoEntity);
+        return cargoEntity.getId();
+    }
+
+    //Add new
+    public Integer addNew(String name, Integer weight, Integer status,
+                          Integer loadingRoutePoint,
+                          Integer deliveryRoutePoint) {
+
+        CargoDao cargoDao = new CargoDao(getEntityManager());
+        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
+
+        CargoEntity cargoEntity = new CargoEntity(name, weight, status,
+                routePointDao.findRoutePointById(loadingRoutePoint),
+                routePointDao.findRoutePointById(deliveryRoutePoint)
+        );
+
         cargoDao.createCargo(cargoEntity);
         return cargoEntity.getId();
     }
@@ -25,6 +51,12 @@ public class CargoService {
     public CargoEntity findById(String id) {
         CargoDao cargoDao = new CargoDao(getEntityManager());
         return  cargoDao.findCargoById(Integer.parseInt(id));
+    }
+
+    //Find by id
+    public CargoEntity findById(Integer id) {
+        CargoDao cargoDao = new CargoDao(getEntityManager());
+        return  cargoDao.findCargoById(id);
     }
 
     //Find all

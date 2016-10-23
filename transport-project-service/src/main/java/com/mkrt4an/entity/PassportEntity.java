@@ -18,7 +18,7 @@ public class PassportEntity implements Serializable {
     @Column(name = "serial", nullable = false, length = 20)
     private Integer serial;
 
-    @OneToOne (mappedBy = "passport", cascade=CascadeType.ALL)
+    @OneToOne(mappedBy = "passport", cascade = CascadeType.ALL)
 //    @LazyCollection(LazyCollectionOption.FALSE)
     private UserEntity user;
 
@@ -26,6 +26,7 @@ public class PassportEntity implements Serializable {
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -33,6 +34,7 @@ public class PassportEntity implements Serializable {
     public Integer getSerial() {
         return serial;
     }
+
     public void setSerial(Integer serial) {
         this.serial = serial;
     }
@@ -40,6 +42,7 @@ public class PassportEntity implements Serializable {
     public UserEntity getUser() {
         return user;
     }
+
     public void setUser(UserEntity user) {
         this.user = user;
     }
@@ -50,14 +53,15 @@ public class PassportEntity implements Serializable {
     }
 
     //Constructors
-    public PassportEntity(){}
+    public PassportEntity() {
+    }
 
-    public PassportEntity(Integer id, Integer serial){
+    public PassportEntity(Integer id, Integer serial) {
         this.id = id;
         this.serial = serial;
     }
 
-    public PassportEntity(Integer serial){
+    public PassportEntity(Integer serial) {
         this.serial = serial;
     }
 
@@ -87,7 +91,7 @@ public class PassportEntity implements Serializable {
         return "PassportEntity{" +
                 "id=" + id +
                 ", serial=" + serial +
-                ", user=" + (user == null ? "NULL" :  user.getId())+
+                ", user=" + (user == null ? "NULL" : user.getId()) +
                 '}' + '\n';
     }
 }

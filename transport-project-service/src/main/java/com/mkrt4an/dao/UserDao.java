@@ -12,9 +12,10 @@ import java.util.List;
 public class UserDao {
     private EntityManager em;
 
-    public UserDao (){}
+    public UserDao() {
+    }
 
-    public UserDao(EntityManager em){
+    public UserDao(EntityManager em) {
         this.em = em;
     }
 
@@ -26,14 +27,14 @@ public class UserDao {
     }
 
     //Get all cargo list
-    public List<UserEntity> getAll () {
+    public List<UserEntity> getAll() {
         List<UserEntity> cgl;
         cgl = em.createQuery("select c from UserEntity c", UserEntity.class).getResultList();
         return cgl;
     }
 
     //Create
-    public void create(UserEntity cg){
+    public void create(UserEntity cg) {
         em.getTransaction().begin();
         em.persist(cg);
         em.getTransaction().commit();
@@ -42,7 +43,7 @@ public class UserDao {
     }
 
     //Update
-    public void update(UserEntity cg){
+    public void update(UserEntity cg) {
         em.getTransaction().begin();
         em.persist(cg);
         em.getTransaction().commit();
@@ -50,7 +51,7 @@ public class UserDao {
     }
 
     //Delete
-    public void delete (UserEntity cg){
+    public void delete(UserEntity cg) {
         em.getTransaction().begin();
         em.remove(cg);
         em.getTransaction().commit();

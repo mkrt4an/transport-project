@@ -26,6 +26,7 @@ public class UserEntity implements Serializable {
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -33,6 +34,7 @@ public class UserEntity implements Serializable {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -40,20 +42,22 @@ public class UserEntity implements Serializable {
     public PassportEntity getPassport() {
         return passport;
     }
+
     public void setPassport(PassportEntity passport) {
         this.passport = passport;
     }
 
 
     //Constructors
-    public UserEntity(){}
+    public UserEntity() {
+    }
 
-    public UserEntity(Integer id, String name){
+    public UserEntity(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public UserEntity(String name){
+    public UserEntity(String name) {
         this.name = name;
     }
 

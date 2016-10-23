@@ -33,11 +33,11 @@ public class DriverEntity implements Serializable {
 //    private TruckEntity currentTruck;
 
     @ManyToOne   //  (cascade = CascadeType.DETACH)
-    @JoinColumn(name= "city_id")
+    @JoinColumn(name = "city_id")
     private CityEntity currentCity;
 
     @ManyToOne
-    @JoinColumn(name= "orders_id")
+    @JoinColumn(name = "orders_id")
     private OrderEntity order;
 
     public DriverEntity(String firstName, String lastName, Integer workedHours, Integer status, CityEntity currentCity) {
@@ -63,13 +63,14 @@ public class DriverEntity implements Serializable {
         this.firstName = firstName;
     }
 
-    public DriverEntity(){}
-
+    public DriverEntity() {
+    }
 
 
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -77,6 +78,7 @@ public class DriverEntity implements Serializable {
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -84,6 +86,7 @@ public class DriverEntity implements Serializable {
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -91,6 +94,7 @@ public class DriverEntity implements Serializable {
     public Integer getWorkedHours() {
         return workedHours;
     }
+
     public void setWorkedHours(Integer workedHours) {
         this.workedHours = workedHours;
     }
@@ -98,6 +102,7 @@ public class DriverEntity implements Serializable {
     public Integer getStatus() {
         return status;
     }
+
     public void setStatus(Integer status) {
         this.status = status;
     }
@@ -112,6 +117,7 @@ public class DriverEntity implements Serializable {
     public CityEntity getCurrentCity() {
         return currentCity;
     }
+
     public void setCurrentCity(CityEntity currentCity) {
         this.currentCity = currentCity;
     }
@@ -119,6 +125,7 @@ public class DriverEntity implements Serializable {
     public OrderEntity getOrder() {
         return order;
     }
+
     public void setOrder(OrderEntity order) {
         this.order = order;
     }

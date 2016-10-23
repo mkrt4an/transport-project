@@ -23,7 +23,7 @@ public class UpdateCargoServlet extends HttpServlet {
 
         String url = request.getServletPath();
 
-        if ("/UpdateCargoServlet".equals(url)){
+        if ("/UpdateCargoServlet".equals(url)) {
 
             id = request.getParameter("id");
             request.setAttribute("cargo", cargoService.findById(id));

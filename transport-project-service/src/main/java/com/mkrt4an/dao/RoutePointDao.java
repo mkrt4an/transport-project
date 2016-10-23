@@ -13,9 +13,10 @@ public class RoutePointDao {
 
     private EntityManager em;
 
-    public RoutePointDao(){}
+    public RoutePointDao() {
+    }
 
-    public RoutePointDao(EntityManager em){
+    public RoutePointDao(EntityManager em) {
         this.em = em;
     }
 
@@ -28,7 +29,7 @@ public class RoutePointDao {
     }
 
     //Get all cargo list
-    public List<RoutePointEntity> getAllRoutePoints () {
+    public List<RoutePointEntity> getAllRoutePoints() {
 //        EntityManager em = getEntityManager();
         List<RoutePointEntity> cgl;
         cgl = em.createQuery("select c from RoutePointEntity c", RoutePointEntity.class).getResultList();
@@ -37,7 +38,7 @@ public class RoutePointDao {
     }
 
     //Create
-    public Integer createRoutePoint(RoutePointEntity cg){
+    public Integer createRoutePoint(RoutePointEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
@@ -48,16 +49,18 @@ public class RoutePointDao {
     }
 
     //Update
-    public void updateRoutePoint(RoutePointEntity cg){
+    public Integer updateRoutePoint(RoutePointEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
         em.getTransaction().commit();
+
+        return cg.getId();
 //        em.close();
     }
 
     //Delete
-    public void deleteRoutePoint (RoutePointEntity cg){
+    public void deleteRoutePoint(RoutePointEntity cg) {
 //        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.remove(cg);
