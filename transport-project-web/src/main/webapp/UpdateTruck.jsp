@@ -1,18 +1,30 @@
 <%@include file="header.jsp" %>
 
-<form action="/UpdateTruckServletConfirmed" method="get">
-    <input type="hidden" name="id" value="${truck.id}" />
-    dutySize:<br>
-    <input type="text" name="dutySize" value="${truck.dutySize}"/><br>
-    capasity:<br>
-    <input type="text" name="capasity" value="${truck.capasity}"/><br>
-    regNumber:<br>
-    <input type="text" name="regNumber" value="${truck.regNumber}"/><br>
-    status:<br>
-    <input type="text" name="status" value="${truck.status}"/><br>
+<h1>Update truck page</h1><br>
 
-    currentCity:<br>
-    <select name="city">
+<form action="/UpdateTruckServletConfirmed" method="get">
+    <input type="hidden" name="id" value="${truck.id}"/>
+
+    RegNumber:<br>
+    <input type="text" name="regNumber" required value="${truck.regNumber}"/><br><br>
+
+    DutySize:<br>
+    <input type="number" name="dutySize" required value="${truck.dutySize}"/><br><br>
+
+    Capasity:<br>
+    <input type="number" name="capasity" required value="${truck.capasity}"/><br><br>
+
+    Status:<br>
+    <%--<input type="text" name="enter status" required value="${truck.status}"/><br><br>--%>
+    <select name="status" required>
+        <option disabled selected value> -- select a status -- </option>
+        <option value="0" <c:if test="${truck.status == 0}"><c:out value="selected"/></c:if>> defective </option>
+        <option value="1" <c:if test="${truck.status == 1}"><c:out value="selected"/></c:if>> ok </option>
+    </select><br><br>
+
+
+    CurrentCity:<br>
+    <select name="city" required>
         <c:forEach var="item" items="${cityAll}">
             <option value="${item.id}"
                     <c:if test="${item.name==truck.currentCity.name}">

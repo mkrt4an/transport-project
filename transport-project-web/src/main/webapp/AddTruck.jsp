@@ -1,36 +1,44 @@
 <%@include file="header.jsp" %>
 
+<h1>Add truck page</h1><br>
+
 <form action="/AddNewTruckServlet" method="get">
-  <input type="hidden" name="id" value="${truck.id}" />
+    <input type="hidden" name="id" value="${truck.id}"/>
 
-  dutySize:<br>
-  <input type="text" name="dutySize" value="${truck.dutySize}"/><br>
+    RegNumber:<br>
+    <input type="text" name="regNumber" required placeholder="enter reg number" value="${truck.regNumber}"/><br><br>
 
-  capasity:<br>
-  <input type="text" name="capasity" value="${truck.capasity}"/><br>
+    DutySize:<br>
+    <input type="number" name="dutySize" required placeholder="enter duty size" value="${truck.dutySize}"/><br><br>
 
-  regNumber:<br>
-  <input type="text" name="regNumber" value="${truck.regNumber}"/><br>
+    Capasity:<br>
+    <input type="number" name="capasity" required placeholder="enter capasity" value="${truck.capasity}"/><br><br>
 
-  status:<br>
-  <input type="text" name="status" value="${truck.status}"/><br>
+    Status:<br>
+    <%--<input type="text" name="status" required placeholder="enter status" value="${truck.status}"/><br><br>--%>
+    <select name="status" required>
+        <option disabled selected value> -- select a status -- </option>
+        <option value="0" <c:if test="${truck.status == 0}"><c:out value="selected"/></c:if>> defective </option>
+        <option value="1" <c:if test="${truck.status == 1}"><c:out value="selected"/></c:if>> ok </option>
+    </select><br><br>
 
-  currentCity:<br>
-  <select name="city">
-    <option disabled selected value> -- select a city-- </option>
-    <c:forEach var="item" items="${cityAll}">
-      <option value="${item.id}"
-              <%--<c:if test="${item.name==truck.currentCity.name}">--%>
+
+    CurrentCity:<br>
+    <select name="city" required>
+        <option disabled selected value> -- select a city--</option>
+        <c:forEach var="item" items="${cityAll}">
+            <option value="${item.id}"
+                <%--<c:if test="${item.name==truck.currentCity.name}">--%>
                 <%--<c:out value="selected"/>--%>
-              <%--</c:if>--%>
-              >
-        <c:out value="${item.name}"/>
-      </option>
-    </c:forEach>
-  </select><br><br>
+                <%--</c:if>--%>
+            >
+                <c:out value="${item.name}"/>
+            </option>
+        </c:forEach>
+    </select><br><br>
 
-  <input type="submit" name="update" value="submit"/>
-  <input type="button" name="Cancel" value="Back" onclick="location.href='/GetAllTrucksServlet'"/>
+    <input type="submit" name="update" value="submit"/>
+    <input type="button" name="Cancel" value="Back" onclick="location.href='/GetAllTrucksServlet'"/>
 </form>
 
 <%@include file="footer.jsp" %>

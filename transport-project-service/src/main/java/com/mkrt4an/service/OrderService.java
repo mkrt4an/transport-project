@@ -26,13 +26,22 @@ public class OrderService {
 //        }
 //    }
 
-    //Find by id
+
+    /**
+     * Find by id.
+     * @param id entity id
+     * @return the found entity instance
+     */
     public OrderEntity findById(String id) {
         OrderDao orderDao = new OrderDao(getEntityManager());
         return orderDao.findOrderById(Integer.parseInt(id));
     }
 
-    //Find by id
+    /**
+     * Find by id.
+     * @param id entity id
+     * @return the found entity instance
+     */
     public OrderEntity findById(Integer id) {
         OrderDao orderDao = new OrderDao(getEntityManager());
         return orderDao.findOrderById(id);

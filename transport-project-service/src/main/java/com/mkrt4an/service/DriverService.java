@@ -29,7 +29,8 @@ public class DriverService {
 
     // Find all drivers
     public List<DriverEntity> findAllDrivers() {
-        return null;
+        DriverDao driverDao = new DriverDao(getEntityManager());
+        return driverDao.getAllDrivers() ;
     }
 
 

@@ -38,11 +38,11 @@ public class RoutePointEntity implements Serializable {
     @JoinColumn(name = "orders_id")
     private OrderEntity order;
 
-    @OneToMany(mappedBy = "loadingRoutePoint", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "loadingRoutePoint", cascade = CascadeType.ALL, orphanRemoval=true)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<CargoEntity> cargoToLoadList;
 
-    @OneToMany(mappedBy = "deliveryRoutePoint", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "deliveryRoutePoint", cascade = CascadeType.ALL, orphanRemoval=true)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<CargoEntity> cargoToDeliverList;
 
@@ -68,7 +68,7 @@ public class RoutePointEntity implements Serializable {
     public RoutePointEntity(CityEntity city, OrderEntity order) {
         this.order = order;
         this.city = city;
-//        this.ordinal = 1;
+        this.ordinal = 1;
     }
 
     public RoutePointEntity(Integer type, CityEntity city, CargoEntity cargo, OrderEntity order) {

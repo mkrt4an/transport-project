@@ -43,7 +43,7 @@ public class UpdateOrderServlet extends HttpServlet {
 
         } else if ("/AddOrder".equals(url)) {
 
-            OrderService orderService = new OrderService();
+//            OrderService orderService = new OrderService();
 
             request.setAttribute("truckAll", tkd.getAllTrucks());
             request.setAttribute("driverAll", drd.getAllDrivers());

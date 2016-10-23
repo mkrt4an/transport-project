@@ -1,5 +1,7 @@
 <%@include file="header.jsp" %>
 
+<h1>All orders page</h1><br>
+
 <table border=1 width=1 cellspacing=2 cellpadding=2>
     <thead>
     </thead>

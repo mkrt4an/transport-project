@@ -1,6 +1,8 @@
 
 <%@include file="header.jsp" %>
 
+<h1>All drivers page</h1><br>
+
 <table border=1 width=1 cellspacing=2 cellpadding=2>
 <thead>
 </thead>
@@ -56,7 +58,11 @@
                 <%--<c:out value="${item.currentTruck.regNumber}"/>--%>
             <%--</td>--%>
             <td>
-                <c:out value="${item.status}"/>
+                <%--<c:out value="${item.status}"/>--%>
+                <c:if test="${item.status == 0}"><c:out value="rest"/></c:if>
+                <c:if test="${item.status == 1}"><c:out value="onduty"/></c:if>
+                <c:if test="${item.status == 3}"><c:out value="drive"/></c:if>
+
             </td>
             <td>
                 <a href=/UpdateDriverServlet?id=${item.id}>update</a>

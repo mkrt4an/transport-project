@@ -20,7 +20,7 @@ public class DeleteDriverServlet extends HttpServlet {
 
         new DriverService().deleteById(request.getParameter("id"));
 
-        request.getRequestDispatcher("/GetAllDrivers.jsp").forward(request, response);
+        request.getRequestDispatcher("/GetAllDriversServlet").forward(request, response);
     }
 }
 

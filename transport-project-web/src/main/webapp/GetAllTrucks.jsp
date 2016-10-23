@@ -1,6 +1,8 @@
 
 <%@include file="header.jsp" %>
 
+<h1>All trucks page</h1><br>
+
 <table border=1 width=1 cellspacing=2 cellpadding=2 align="">
     <thead>
     </thead>
@@ -47,7 +49,9 @@
             <c:out value="${item.capasity}"/>
         </td>
         <td>
-            <c:out value="${item.status}"/>
+            <%--<c:out value="${item.status}"/>--%>
+            <c:if test="${item.status == 0}"><c:out value="defective"/></c:if>
+            <c:if test="${item.status == 1}"><c:out value="ok"/></c:if>
         </td>
         <td>
             <c:out value="${item.regNumber}"/>

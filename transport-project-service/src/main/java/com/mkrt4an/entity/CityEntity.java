@@ -43,13 +43,11 @@ public class CityEntity implements Serializable {
     public CityEntity() {
     }
 
-
     public CityEntity(String name, Integer x, Integer y) {
         this.name = name;
         this.x = x;
         this.y = y;
     }
-
 
     public Integer getId() {
         return id;

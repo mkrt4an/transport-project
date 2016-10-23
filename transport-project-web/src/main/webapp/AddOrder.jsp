@@ -1,15 +1,17 @@
 <%@include file="header.jsp" %>
 
+<h1>Add order page</h1><br>
+
 <form action="/AddNewOrderServlet" method="get">
     <input type="hidden" name="id" value="${order.id}" />
 
-    uid:<br>
+    Uid:<br>
     <input type="text" name="uid" value="${order.uid}"/><br>
 
-    status:<br>
+    Status:<br>
     <input type="text" name="status" value="${order.status}"/><br>
 
-    currentTruck:<br>
+    CurrentTruck:<br>
     <select name="currentTruck">
         <option disabled selected value> -- select an option -- </option>
         <c:forEach var="item" items="${truckAll}">
@@ -23,7 +25,7 @@
         </c:forEach>
     </select><br>
 
-    driverList:<br>
+    DriverList:<br>
         <c:forEach var="item" items="${driverAll}">
             <input type="checkbox" name="driver${item.id}" value="${item.id}">
                 <c:out value="${item.firstName}"/><br>

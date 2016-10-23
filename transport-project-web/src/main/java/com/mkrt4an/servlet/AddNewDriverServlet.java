@@ -6,7 +6,6 @@ package com.mkrt4an.servlet;
 
 import com.mkrt4an.dao.CityDao;
 import com.mkrt4an.dao.DriverDao;
-import com.mkrt4an.dao.TruckDao;
 import com.mkrt4an.entity.DriverEntity;
 
 import javax.servlet.ServletException;
@@ -30,14 +29,17 @@ public class AddNewDriverServlet extends HttpServlet {
         Integer workedHours = Integer.parseInt(request.getParameter("workedHours"));
         Integer status = Integer.parseInt(request.getParameter("status"));
         Integer cityId = Integer.parseInt(request.getParameter("city"));
-        Integer currentTruckId = Integer.parseInt(request.getParameter("currentTruck"));
+//        Integer currentTruckId = Integer.parseInt(request.getParameter("currentTruck"));
 
         DriverDao drd = new DriverDao(getEntityManager());
         CityDao ctd = new CityDao(getEntityManager());
-        TruckDao tkd = new TruckDao(getEntityManager());
+//        TruckDao tkd = new TruckDao(getEntityManager());
 
         DriverEntity dre;
-        dre = new DriverEntity(firstName, lastName, workedHours, status, tkd.findTruckById(currentTruckId), ctd.findCityById(cityId));
+        dre = new DriverEntity(firstName, lastName,
+                workedHours, status,
+//                tkd.findTruckById(currentTruckId),
+                ctd.findCityById(cityId));
 
         drd.createDriver(dre);
 

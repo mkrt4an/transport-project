@@ -1,17 +1,19 @@
 <%@include file="header.jsp" %>
 
+<h1>Update order page</h1><br>
+
 <form action="/UpdateOrderServletConfirmed" method="get">
-    <input type="hidden" name="id" value="${order.id}" />
+    <input type="hidden" name="id" value="${order.id}"/>
 
-    uid:<br>
-    <input type="text" name="uid" value="${order.uid}"/><br>
+    Uid:<br>
+    <input type="text" name="uid" required value="${order.uid}"/><br><br>
 
-    status:<br>
-    <input type="text" name="status" value="${order.status}"/><br>
+    Status:<br>
+    <input type="text" name="status" required value="${order.status}"/><br><br>
 
-    currentTruck:<br>
-    <select name="currentTruck">
-        <option disabled selected value> -- select an option -- </option>
+    CurrentTruck:<br>
+    <select name="currentTruck" required>
+        <option disabled selected value> -- select an option --</option>
         <c:forEach var="item" items="${truckAll}">
             <option value="${item.id}"
                     <c:if test="${item.regNumber==order.currentTruck.regNumber}">

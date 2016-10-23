@@ -20,6 +20,6 @@ public class DeleteTruckServlet extends HttpServlet {
 
         new TruckService().deleteById(request.getParameter("id"));
 
-        request.getRequestDispatcher("/GetAllTrucks.jsp").forward(request, response);
+        request.getRequestDispatcher("/GetAllTrucksServlet").forward(request, response);
     }
 }
