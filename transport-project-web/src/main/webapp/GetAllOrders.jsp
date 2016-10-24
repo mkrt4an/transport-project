@@ -14,9 +14,6 @@
             <c:out value="uid"/>
         </th>
         <th>
-            <c:out value="status"/>
-        </th>
-        <th>
             <c:out value="routePointList"/>
         </th>
         <th>
@@ -24,6 +21,9 @@
         </th>
         <th>
             <c:out value="currentTruck"/>
+        </th>
+        <th>
+            <c:out value="status"/>
         </th>
         <th>
             <c:out value="update"/>
@@ -42,12 +42,9 @@
             <c:out value="${item.uid}"/>
         </td>
         <td>
-            <c:out value="${item.status}"/>
-        </td>
-        <td>
             <c:forEach var="item3" items="${item.routePointList}">
                 <c:out value="${item3.city.name}"/>
-                <c:out value=" "/>
+                <c:out value=" - "/>
                 <c:out value="${item3.ordinal}"/>
                 <br>
             </c:forEach>
@@ -62,6 +59,11 @@
         </td>
         <td>
             <c:out value="${item.currentTruck.regNumber}"/>
+        </td>
+        <td>
+                <%--<c:out value="${item.status}"/>--%>
+            <c:if test="${item.status == 0}"><c:out value="not done"/></c:if>
+            <c:if test="${item.status == 1}"><c:out value="done"/></c:if>
         </td>
         <td>
             <a href=/UpdateOrderServlet?id=${item.id}>update</a>

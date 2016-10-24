@@ -14,11 +14,7 @@ div {
 }
 
 header.mainH {
-    /*height: 60px;*/
     width: 100%;
-    /*-webkit-border-radius: 2px;*/
-    /*-moz-border-radius: 2px;*/
-    /*border-radius: 2px;*/
     -webkit-box-shadow: 0 3px 5px 0 #AA4400;
     -moz-box-shadow: 0 3px 5px 0 #AA4400;
     box-shadow: 0 3px 5px 0 #AA4400;
@@ -42,15 +38,9 @@ nav ul {
     width: 100%;
     display: block;
     list-style: none;
-    /*padding: 0px;*/
-    /*clear: right;*/
     clear: right;
     background-color: #666;
     padding-left: 0px;
-    /*height: 24px;*/
-    /*-webkit-border-radius: 2px;*/
-    /*-moz-border-radius: 2px;*/
-    /*border-radius: 2px;*/
 }
 
 nav ul :hover {
@@ -59,9 +49,7 @@ nav ul :hover {
 
 nav ul li {
     display: inline-block;
-    /*padding: 0px 20px 0px 20px;*/
     margin-right: -4px;
-    /*height: 24px; */
     border-right: 1px solid #ccc;
 }
 
@@ -87,7 +75,6 @@ footer p {
 }
 
 table {
-    /*font-family: arial, sans-serif;*/
     border-collapse: collapse;
     width: 100%;
 }
@@ -121,41 +108,27 @@ h1 {
 }
 
 #main {
-    /* overflow: auto; */
-    /* padding : 10px */;
-    /* background-color : #DDD */;
-    /* height : 200px */;
     clear : left;
 }
 
 #load {
     margin : 0px;
-    /* margin-top : 10% */;
-    /* margin-right : 60% */;
     background-color : #DDD;
     display: inline-block;
     width : 59%;
-    /* float : left */;
-    /* height : 100% */;
     vertical-align: top;
 
 }
 
 #added {
     margin : 0px;
-    /* position : right */;
-    /* margin-top : 10% */;
-    /* margin-left : 40% */;
     background-color : #DDD;
     display: inline-block;
     width : 40%;
-    /* float : right */;
-    /* height : 100% */;
     vertical-align: top;
 }
 
 #delivery {
     padding : 0px 0px  10px 0px ;
     background-color : #DDD;
-    /* height : 100px */;
 }

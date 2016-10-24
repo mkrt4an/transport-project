@@ -35,28 +35,14 @@ public class RoutePointService {
     }
 
 
-    public Integer AddRoutePoint(List<CargoEntity> cargoToLoad, List<CargoEntity> cargoToDeliver,
+    public Integer AddRoutePoint(List<CargoEntity> cargoToLoad,
+                                 List<CargoEntity> cargoToDeliver,
                                  Integer ordinal, CityEntity city, OrderEntity order) {
 
         RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
         OrderDao orderDao = new OrderDao(getEntityManager());
 
-        RoutePointEntity routePoint = new RoutePointEntity(cargoToLoad,
-                cargoToDeliver,
-                ordinal,
-                city,
-                order
-        );
-
-
-//        List<RoutePointEntity> routePointEntityListRes;
-//
-//        Integer i = 0;
-//        for(RoutePointEntity routePointEntity : order.getRoutePointList()) {
-//            routePointEntity.setOrdinal(i++);
-//        }
-//         routePointEntityListRes
-
+        RoutePointEntity routePoint = new RoutePointEntity( cargoToLoad, cargoToDeliver, ordinal, city, order);
 
         routePoint.assignCargoToLoadList(cargoToLoad);
 //        routePoint.assignCargoToDeliverList(cargoToDeliver);
@@ -153,12 +139,31 @@ public class RoutePointService {
         return routePointDao.findRoutePointById(id);
     }
 
-
     //Find all orders
     public List<RoutePointEntity> findAll() {
         RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
         return routePointDao.getAllRoutePoints();
     }
 
+    //Find max weight on route points to find suitable truck that have such capasity
+    public Integer findMaxWeightOnRoute(OrderEntity orderEntity) {
+        OrderDao orderDao = new OrderDao(getEntityManager());
+
+        Integer maxWeight = 0;
+
+        List<RoutePointEntity> routePointEntityList = orderEntity.getRoutePointList();
+
+        for(RoutePointEntity RoutePointEntity : routePointEntityList ) {
+            for(CargoEntity cargoEntity : RoutePointEntity.getCargoToDeliverList()) {
+                maxWeight =+ cargoEntity.getWeight();
+            }
+
+            for(CargoEntity cargoEntity : RoutePointEntity.getCargoToDeliverList()) {
+                maxWeight =- cargoEntity.getWeight();
+            }
+        }
+
+        return maxWeight;
+    }
 
 }

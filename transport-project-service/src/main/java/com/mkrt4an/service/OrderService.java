@@ -17,7 +17,7 @@ public class OrderService {
 
     // Exceptions
 //    public class NoSuitableDrversException extends Exception {
-//        NoSuitableDrversException() {
+//        NoSuitableDriversException() {
 //        }
 //    }
 
@@ -29,6 +29,7 @@ public class OrderService {
 
     /**
      * Find by id.
+     *
      * @param id entity id
      * @return the found entity instance
      */
@@ -39,6 +40,7 @@ public class OrderService {
 
     /**
      * Find by id.
+     *
      * @param id entity id
      * @return the found entity instance
      */
@@ -64,6 +66,7 @@ public class OrderService {
 //            throws NoSuitableTruckException
 
     {
+        RoutePointService routePointService = new RoutePointService();
 
         TruckDao truckDao = new TruckDao(getEntityManager());
 
@@ -72,15 +75,14 @@ public class OrderService {
         List<TruckEntity> allTrucks = truckDao.getAllTrucks();
 
         for (TruckEntity truckEntity : allTrucks) {
-            if (
-//                    (orderEntity.getRoutePointList().get(0).getCargo().getWeight() <= truckEntity.getCapasity())&&
+            if ((routePointService.findMaxWeightOnRoute(orderEntity) < truckEntity.getCapasity()) &&
                     truckEntity.getStatus() == 1 &&
-                            truckEntity.getOrders() == null) {
+                    truckEntity.getOrders() == null) {
                 suitableTrucks.add(truckEntity);
             }
         }
 
-        return  suitableTrucks.isEmpty() ? null : suitableTrucks.get(0);
+        return suitableTrucks.isEmpty() ? null : suitableTrucks.get(0);
     }
 
 
@@ -88,6 +90,7 @@ public class OrderService {
     public List<TruckEntity> getSuitableTruckList(OrderEntity orderEntity)
 //            throws NoSuitableTruckException
     {
+        RoutePointService routePointService = new RoutePointService();
 
         TruckDao truckDao = new TruckDao(getEntityManager());
 
@@ -96,10 +99,9 @@ public class OrderService {
         List<TruckEntity> allTrucks = truckDao.getAllTrucks();
 
         for (TruckEntity truckEntity : allTrucks) {
-            if (
-//                    (orderEntity.getRoutePointList().get(0).getCargo().getWeight() <= truckEntity.getCapasity())&&
+            if ((routePointService.findMaxWeightOnRoute(orderEntity) < truckEntity.getCapasity()) &&
                     truckEntity.getStatus() == 1 &&
-                            truckEntity.getOrders() == null) {
+                    truckEntity.getOrders() == null) {
                 suitableTrucks.add(truckEntity);
             }
         }
@@ -110,7 +112,7 @@ public class OrderService {
 
     // Get driver suitable for this order
     public DriverEntity getSuitableDriver(OrderEntity orderEntity)
-//            throws NoSuitableDrversException
+//            throws NoSuitableDriversException
 
     {
 
@@ -121,7 +123,8 @@ public class OrderService {
         List<DriverEntity> driverEntityList = driverDao.getAllDrivers();
 
         for (DriverEntity driverEntity : driverEntityList) {
-            if (driverEntity.getOrder() == null && driverEntity.getCurrentCity() == orderEntity.getCurrentTruck().getCurrentCity()) {
+            if (driverEntity.getOrder() == null &&
+                    driverEntity.getCurrentCity() == orderEntity.getCurrentTruck().getCurrentCity()) {
                 suitableDrivetList.add(driverEntity);
             }
         }
@@ -135,6 +138,7 @@ public class OrderService {
 //            throws NoSuitableDrversException
 
     {
+        CityService cityService = new CityService();
 
         DriverDao driverDao = new DriverDao(getEntityManager());
 
@@ -143,7 +147,8 @@ public class OrderService {
         List<DriverEntity> driverEntityList = driverDao.getAllDrivers();
 
         for (DriverEntity driverEntity : driverEntityList) {
-            if (driverEntity.getOrder() == null
+            if ((cityService.calcOrderTime(orderEntity) + driverEntity.getWorkedHours()) <= 176 &&
+                    driverEntity.getOrder() == null
                     && orderEntity.getCurrentTruck().getDutySize() > suitableDrivetList.size()
                     && driverEntity.getCurrentCity() == orderEntity.getCurrentTruck().getCurrentCity()
                     ) {
@@ -211,7 +216,7 @@ public class OrderService {
     }
 
 
-    // Add new order by uid, cargoEntity and CityEntity
+    // Add new order
     public Integer addOrder() {
 
         // Get DAO

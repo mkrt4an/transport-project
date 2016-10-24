@@ -17,9 +17,9 @@
     Status:<br>
     <select name="status" required>
         <option disabled selected value> -- select a status --</option>
-        <option value="1" <c:if test="${cargo.status == 1}"><c:out value="selected"/></c:if>> ready</option>
-        <option value="2" <c:if test="${cargo.status == 2}"><c:out value="selected"/></c:if>> shipped</option>
-        <option value="3" <c:if test="${cargo.status == 3}"><c:out value="selected"/></c:if>> delivered</option>
+        <option value="0" <c:if test="${cargo.status == 0}"><c:out value="selected"/></c:if>>ready</option>
+        <option value="1" <c:if test="${cargo.status == 1}"><c:out value="selected"/></c:if>>shipped</option>
+        <option value="2" <c:if test="${cargo.status == 2}"><c:out value="selected"/></c:if>>delivered</option>
     </select><br><br>
 
     <input type="submit" name="update" value="Submit"/>

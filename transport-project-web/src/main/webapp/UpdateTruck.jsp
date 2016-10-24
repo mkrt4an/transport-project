@@ -11,8 +11,20 @@
     DutySize:<br>
     <input type="number" name="dutySize" required value="${truck.dutySize}"/><br><br>
 
-    Capasity:<br>
+    Capasity, tons:<br>
     <input type="number" name="capasity" required value="${truck.capasity}"/><br><br>
+
+    CurrentCity:<br>
+    <select name="city" required>
+        <c:forEach var="item" items="${cityAll}">
+            <option value="${item.id}"
+            <c:if test="${item.name==truck.currentCity.name}">
+                <c:out value="selected"/>
+            </c:if>>
+    <c:out value="${item.name}"/>
+    </option>
+        </c:forEach>
+    </select><br><br>
 
     Status:<br>
     <%--<input type="text" name="enter status" required value="${truck.status}"/><br><br>--%>
@@ -20,19 +32,6 @@
         <option disabled selected value> -- select a status -- </option>
         <option value="0" <c:if test="${truck.status == 0}"><c:out value="selected"/></c:if>> defective </option>
         <option value="1" <c:if test="${truck.status == 1}"><c:out value="selected"/></c:if>> ok </option>
-    </select><br><br>
-
-
-    CurrentCity:<br>
-    <select name="city" required>
-        <c:forEach var="item" items="${cityAll}">
-            <option value="${item.id}"
-                    <c:if test="${item.name==truck.currentCity.name}">
-                        <c:out value="selected"/>
-                    </c:if>>
-                <c:out value="${item.name}"/>
-            </option>
-        </c:forEach>
     </select><br><br>
 
     <input type="submit" name="update" value="submit"/>

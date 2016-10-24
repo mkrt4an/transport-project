@@ -15,7 +15,7 @@
             <c:out value="name"/>
         </th>
         <th>
-            <c:out value="weight"/>
+            <c:out value="weight, kg"/>
         </th>
         <th>
             <c:out value="status"/>
@@ -40,7 +40,10 @@
             <c:out value="${item.weight}"/>
         </td>
         <td>
-            <c:out value="${item.status}"/>
+            <%--<c:out value="${item.status}"/>--%>
+            <c:if test="${item.status == 0}"><c:out value="ready"/></c:if>
+            <c:if test="${item.status == 1}"><c:out value="shipped"/></c:if>
+            <c:if test="${item.status == 2}"><c:out value="delivered"/></c:if>
         </td>
         <td>
             <a href=/UpdateCargoServlet?id=${item.id}>update</a>

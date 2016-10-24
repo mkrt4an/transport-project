@@ -43,7 +43,7 @@
             <%--<input hidden name="routePointId" value="${routePointId}"/>--%>
             <%--<input hidden name="orderId" value="${orderId}"/>--%>
 
-            <%--<input id="cargoSubmit" type="submit" value="ADD" name=""/>--%>
+            <input id="cargoSubmit" type="submit" value="Add cargo " name=""/>
             <%--</form>--%>
         </div>
 
