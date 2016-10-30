@@ -3,6 +3,7 @@ package com.mkrt4an.utils;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.spi.PersistenceProvider;
 
 /**
  * Created by 123 on 28.09.2016.

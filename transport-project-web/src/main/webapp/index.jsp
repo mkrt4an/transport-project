@@ -1,6 +1,5 @@
-<%@include file="header.jsp" %>
-
-
-
-
-<%@include file="footer.jsp" %>
+<form action="LoginServlet" method="post">
+    Name:<input type="text" name="name"><br>
+    Password:<input type="password" name="password"><br>
+    <input type="submit" value="login">
+</form>

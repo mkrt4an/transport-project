@@ -165,8 +165,8 @@ public class DriverEntity implements Serializable {
     public String toString() {
         return "DriverEntity{" +
                 "id=" + id +
-                ", firstName=" + firstName + '\'' +
-                ", lastName=" + lastName + '\'' +
+                ", firstName=" + firstName +
+                ", lastName=" + lastName  +
                 ", workedHours=" + workedHours +
                 ", status=" + status +
 //                ", currentTruck=" + (currentTruck == null ? "null" : currentTruck.getRegNumber()) +

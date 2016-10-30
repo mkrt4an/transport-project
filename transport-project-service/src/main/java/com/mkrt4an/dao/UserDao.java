@@ -38,16 +38,18 @@ public class UserDao {
         em.getTransaction().begin();
         em.persist(cg);
         em.getTransaction().commit();
-        System.out.printf("New User is: %s\n", em.find(UserEntity.class, cg.getId()));
 
     }
 
     //Update
     public void update(UserEntity cg) {
+        try {
         em.getTransaction().begin();
         em.persist(cg);
         em.getTransaction().commit();
-        System.out.printf("New user is: %s\n", em.find(UserEntity.class, cg.getId()));
+    } finally {
+
+    }
     }
 
     //Delete

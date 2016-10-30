@@ -133,7 +133,7 @@ public class CityEntity implements Serializable {
     public String toString() {
         return "City{" +
                 "id=" + id +
-                ", name=" + name + '\'' +
+                ", name=" + name +
                 ", x=" + x +
                 ", y=" + y +
                 '}' + "\n";

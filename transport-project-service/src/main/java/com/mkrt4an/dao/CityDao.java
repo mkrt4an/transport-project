@@ -23,9 +23,7 @@ public class CityDao {
 
     // Find by id
     public CityEntity findCityById(int id) {
-//        EntityManager em = getEntityManager();
         CityEntity cg = em.find(CityEntity.class, id);
-//        em.close();
         return cg;
     }
 
@@ -40,30 +38,24 @@ public class CityDao {
 
     //Create
     public void createCity(CityEntity cg) {
-//        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
         em.getTransaction().commit();
         System.out.printf("New City is: %s\n", em.find(CityEntity.class, cg.getId()));
-//        em.close();
     }
 
     //Update
     public void updateCity(CityEntity cg) {
-//        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
         em.getTransaction().commit();
-//        em.close();
     }
 
     //Delete
     public void deleteCity(CityEntity cg) {
-//        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.remove(cg);
         em.getTransaction().commit();
-//        em.close();
     }
 
 

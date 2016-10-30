@@ -8,7 +8,9 @@ import com.mkrt4an.entity.CargoEntity;
 import com.mkrt4an.entity.CityEntity;
 import com.mkrt4an.entity.OrderEntity;
 import com.mkrt4an.entity.RoutePointEntity;
+import org.hibernate.query.NativeQuery;
 
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,9 +37,14 @@ public class RoutePointService {
     }
 
 
+
+
+
     public Integer AddRoutePoint(List<CargoEntity> cargoToLoad,
                                  List<CargoEntity> cargoToDeliver,
                                  Integer ordinal, CityEntity city, OrderEntity order) {
+
+        RoutePointService routePointService = new RoutePointService();
 
         RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
         OrderDao orderDao = new OrderDao(getEntityManager());
@@ -45,9 +52,12 @@ public class RoutePointService {
         RoutePointEntity routePoint = new RoutePointEntity( cargoToLoad, cargoToDeliver, ordinal, city, order);
 
         routePoint.assignCargoToLoadList(cargoToLoad);
-//        routePoint.assignCargoToDeliverList(cargoToDeliver);
+        routePoint.assignCargoToDeliverList(cargoToDeliver);
 
-        return routePointDao.createRoutePoint(routePoint);
+         routePointDao.createRoutePoint(routePoint);
+        order.assignRoutePointList(routePointService.getOrderRoutePointList(order.getId()));
+
+        return routePoint.getId();
     }
 
 
@@ -125,7 +135,6 @@ public class RoutePointService {
         routePoint.setCity(city);
         routePoint.setOrder(order);
 
-
         return routePointDao.updateRoutePoint(routePoint);
     }
 
@@ -139,6 +148,7 @@ public class RoutePointService {
         return routePointDao.findRoutePointById(id);
     }
 
+
     //Find all orders
     public List<RoutePointEntity> findAll() {
         RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
@@ -147,23 +157,38 @@ public class RoutePointService {
 
     //Find max weight on route points to find suitable truck that have such capasity
     public Integer findMaxWeightOnRoute(OrderEntity orderEntity) {
-        OrderDao orderDao = new OrderDao(getEntityManager());
 
+        RoutePointService routePointService = new RoutePointService();
         Integer maxWeight = 0;
 
-        List<RoutePointEntity> routePointEntityList = orderEntity.getRoutePointList();
+        //todo
+//        List<RoutePointEntity> routePointEntityList = orderEntity.getRoutePointList();
+        List<RoutePointEntity> routePointEntityList = routePointService.getOrderRoutePointList(orderEntity.getId());
 
-        for(RoutePointEntity RoutePointEntity : routePointEntityList ) {
-            for(CargoEntity cargoEntity : RoutePointEntity.getCargoToDeliverList()) {
-                maxWeight =+ cargoEntity.getWeight();
+        for (RoutePointEntity RoutePointEntity : routePointEntityList) {
+            for (CargoEntity cargoEntity : RoutePointEntity.getCargoToLoadList()) {
+                maxWeight = +cargoEntity.getWeight();
             }
 
-            for(CargoEntity cargoEntity : RoutePointEntity.getCargoToDeliverList()) {
-                maxWeight =- cargoEntity.getWeight();
+            for (CargoEntity cargoEntity : RoutePointEntity.getCargoToDeliverList()) {
+                maxWeight = -cargoEntity.getWeight();
             }
         }
 
         return maxWeight;
     }
 
+    //Get order RP list by order id
+    public List<RoutePointEntity> getOrderRoutePointList(Integer orderId) {
+        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
+
+        List<RoutePointEntity> results = new ArrayList<>();
+        for(RoutePointEntity routePointEntity : routePointDao.getAllRoutePoints()) {
+            if(routePointEntity.getOrder().getId() == orderId) {
+                results.add(routePointEntity);
+            }
+        }
+
+        return results;
+    }
 }

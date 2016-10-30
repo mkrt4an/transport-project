@@ -152,7 +152,7 @@ public class TruckEntity implements Serializable {
                 ", dutySize=" + dutySize +
                 ", capasity=" + capasity +
                 ", status=" + status +
-                ", regNumber=" + regNumber + '\'' +
+                ", regNumber=" + regNumber +
                 ", currentCity=" + currentCity.getName() +
                 ", order=" + (orders == null ? "null" : orders) +
                 '}' + "\n";

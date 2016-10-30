@@ -26,7 +26,6 @@ public class OrderService {
 //        }
 //    }
 
-
     /**
      * Find by id.
      *
@@ -75,7 +74,8 @@ public class OrderService {
         List<TruckEntity> allTrucks = truckDao.getAllTrucks();
 
         for (TruckEntity truckEntity : allTrucks) {
-            if ((routePointService.findMaxWeightOnRoute(orderEntity) < truckEntity.getCapasity()) &&
+            if (
+                    (routePointService.findMaxWeightOnRoute(orderEntity) < truckEntity.getCapasity()) &&
                     truckEntity.getStatus() == 1 &&
                     truckEntity.getOrders() == null) {
                 suitableTrucks.add(truckEntity);
@@ -113,7 +113,6 @@ public class OrderService {
     // Get driver suitable for this order
     public DriverEntity getSuitableDriver(OrderEntity orderEntity)
 //            throws NoSuitableDriversException
-
     {
 
         DriverDao driverDao = new DriverDao(getEntityManager());
@@ -147,10 +146,11 @@ public class OrderService {
         List<DriverEntity> driverEntityList = driverDao.getAllDrivers();
 
         for (DriverEntity driverEntity : driverEntityList) {
-            if ((cityService.calcOrderTime(orderEntity) + driverEntity.getWorkedHours()) <= 176 &&
-                    driverEntity.getOrder() == null
-                    && orderEntity.getCurrentTruck().getDutySize() > suitableDrivetList.size()
-                    && driverEntity.getCurrentCity() == orderEntity.getCurrentTruck().getCurrentCity()
+            if (
+                    (cityService.calcOrderTime(orderEntity) + driverEntity.getWorkedHours()) <= 176 &&
+                            driverEntity.getOrder() == null
+                            && orderEntity.getCurrentTruck().getDutySize() > suitableDrivetList.size()
+                            && driverEntity.getCurrentCity() == orderEntity.getCurrentTruck().getCurrentCity()
                     ) {
                 suitableDrivetList.add(driverEntity);
 //                driverEntity.setCurrentTruck(orderEntity.getCurrentTruck()); //TODO

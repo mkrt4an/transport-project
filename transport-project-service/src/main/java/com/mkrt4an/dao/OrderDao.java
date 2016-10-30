@@ -22,48 +22,38 @@ public class OrderDao {
 
     // Find by id
     public OrderEntity findOrderById(int id) {
-//        EntityManager em = getEntityManager();
         OrderEntity cg = em.find(OrderEntity.class, id);
-//        em.close();
         return cg;
     }
 
     //Get all Order list
     public List<OrderEntity> getAllOrders() {
-//        EntityManager em = getEntityManager();
         List<OrderEntity> cgl;
         cgl = em.createQuery("select c from OrderEntity c", OrderEntity.class).getResultList();
-//        em.close();
         return cgl;
     }
 
     //Create
     public Integer createOrder(OrderEntity cg) {
-//        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
         em.getTransaction().commit();
-//        em.close();
 
         return cg.getId();
     }
 
     //Update
     public void updateOrder(OrderEntity cg) {
-//        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
         em.getTransaction().commit();
-//        em.close();
     }
 
     //Delete
     public void deleteOrder(OrderEntity cg) {
-//        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.remove(cg);
         em.getTransaction().commit();
-//        em.close();
     }
 
 }

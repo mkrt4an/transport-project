@@ -1,8 +1,10 @@
 package com.mkrt4an.dao;
 
+import com.mkrt4an.entity.OrderEntity;
 import com.mkrt4an.entity.RoutePointEntity;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
@@ -22,50 +24,48 @@ public class RoutePointDao {
 
     // Find by id
     public RoutePointEntity findRoutePointById(int id) {
-//        EntityManager em = getEntityManager();
         RoutePointEntity cg = em.find(RoutePointEntity.class, id);
-//        em.close();
         return cg;
     }
 
+//    //Get order RP list by order id
+//    public List<RoutePointEntity> getOrderRoutePointList(Integer orderId) {
+//        TypedQuery query = em.createQuery("SELECT rp FROM RoutePointEntity rp WHERE rp.order = :orderId", RoutePointEntity.class);
+//        query.setParameter("orderId", orderId);
+//        List<RoutePointEntity> results = query.getResultList();
+//
+//        return results;
+//
+//    }
+
     //Get all cargo list
     public List<RoutePointEntity> getAllRoutePoints() {
-//        EntityManager em = getEntityManager();
-        List<RoutePointEntity> cgl;
-        cgl = em.createQuery("select c from RoutePointEntity c", RoutePointEntity.class).getResultList();
-//        em.close();
-        return cgl;
+        return em.createQuery("select c from RoutePointEntity c", RoutePointEntity.class).getResultList();
     }
 
     //Create
     public Integer createRoutePoint(RoutePointEntity cg) {
-//        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
         em.getTransaction().commit();
 
         return cg.getId();
-//        em.close();
     }
 
     //Update
     public Integer updateRoutePoint(RoutePointEntity cg) {
-//        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(cg);
         em.getTransaction().commit();
 
         return cg.getId();
-//        em.close();
     }
 
     //Delete
     public void deleteRoutePoint(RoutePointEntity cg) {
-//        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.remove(cg);
         em.getTransaction().commit();
-//        em.close();
     }
 
 }

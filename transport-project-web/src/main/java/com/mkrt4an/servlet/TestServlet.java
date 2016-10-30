@@ -18,7 +18,7 @@ public class TestServlet extends HttpServlet {
 
         response.setContentType("text/html");
 
-        PrintWriter out = response.getWriter();
+//        PrintWriter out = response.getWriter();
 
 //        request.getRequestDispatcher("link.html").include(request, response);
 
@@ -26,13 +26,13 @@ public class TestServlet extends HttpServlet {
 //        ck.setMaxAge(0);
 //        response.addCookie(ck);
 
-        Integer integer = Integer.parseInt(request.getParameter("id"));
+//        Integer integer = Integer.parseInt(request.getParameter("id"));
 
-        CargoDao cargo = new CargoDao(getEntityManager());
+//        CargoDao cargo = new CargoDao(getEntityManager());
 
 //        CargoDao cgd;
 
 
-        out.print(cargo.findCargoById(integer));
+//        out.print(cargo.findCargoById(integer));
     }
 }
