@@ -4,12 +4,11 @@ import com.mkrt4an.entity.PassportEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- * Created by 123 on 28.09.2016.
- */
 
+@Transactional
 public class PassportDao {
 
     @PersistenceContext(unitName = "NewPersistenceUnit")
@@ -25,39 +24,27 @@ public class PassportDao {
 
     // Find by id
     public PassportEntity findById(int id) {
-        PassportEntity cg = em.find(PassportEntity.class, id);
-        return cg;
+        return em.find(PassportEntity.class, id);
     }
 
     //Get all cargo list
     public List<PassportEntity> getAll() {
-        List<PassportEntity> cgl;
-        cgl = em.createQuery("select c from PassportEntity c", PassportEntity.class).getResultList();
-        return cgl;
+        return em.createQuery("select c from PassportEntity c", PassportEntity.class).getResultList();
     }
 
     //Create
-    public void create(PassportEntity cg) {
-        em.getTransaction().begin();
-        em.persist(cg);
-        em.getTransaction().commit();
-        System.out.printf("New User is: %s\n", em.find(PassportEntity.class, cg.getId()));
-
+    public void create(PassportEntity entity) {
+        em.persist(entity);
     }
 
     //Update
-    public void update(PassportEntity cg) {
-        em.getTransaction().begin();
-        em.persist(cg);
-        em.getTransaction().commit();
-        System.out.printf("New user is: %s\n", em.find(PassportEntity.class, cg.getId()));
+    public void update(PassportEntity entity) {
+        em.persist(em.contains(entity) ? entity : em.merge(entity));
     }
 
     //Delete
-    public void delete(PassportEntity cg) {
-        em.getTransaction().begin();
-        em.remove(cg);
-        em.getTransaction().commit();
+    public void delete(PassportEntity entity) {
+        em.remove(em.contains(entity) ? entity : em.merge(entity));
     }
 
 }

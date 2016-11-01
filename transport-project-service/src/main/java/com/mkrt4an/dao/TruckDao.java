@@ -4,12 +4,11 @@ import com.mkrt4an.entity.TruckEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- * Created by 123 on 02.10.2016.
- */
 
+@Transactional
 public class TruckDao {
 
     @PersistenceContext(unitName = "NewPersistenceUnit")
@@ -24,35 +23,26 @@ public class TruckDao {
 
     // Find by id
     public TruckEntity findTruckById(int id) {
-        TruckEntity cg = em.find(TruckEntity.class, id);
-        return cg;
+        return em.find(TruckEntity.class, id);
     }
 
     //Get all cargo list
     public List<TruckEntity> getAllTrucks() {
-        List<TruckEntity> cgl;
-        cgl = em.createQuery("select c from TruckEntity c", TruckEntity.class).getResultList();
-        return cgl;
+        return em.createQuery("select c from TruckEntity c", TruckEntity.class).getResultList();
     }
 
     //Create
-    public void createTruck(TruckEntity cg) {
-        em.getTransaction().begin();
-        em.persist(cg);
-        em.getTransaction().commit();
+    public void createTruck(TruckEntity entity) {
+        em.persist(entity);
     }
 
     //Update
-    public void updateTruck(TruckEntity cg) {
-        em.getTransaction().begin();
-        em.persist(cg);
-        em.getTransaction().commit();
+    public void updateTruck(TruckEntity entity) {
+        em.persist(em.contains(entity) ? entity : em.merge(entity));
     }
 
     //Delete
-    public void deleteTruck(TruckEntity cg) {
-        em.getTransaction().begin();
-        em.remove(cg);
-        em.getTransaction().commit();
+    public void deleteTruck(TruckEntity entity) {
+        em.remove(em.contains(entity) ? entity : em.merge(entity));
     }
 }

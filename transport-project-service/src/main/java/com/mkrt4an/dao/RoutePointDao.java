@@ -6,12 +6,10 @@ import com.mkrt4an.entity.RoutePointEntity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- * Created by 123 on 02.10.2016.
- */
-
+@Transactional
 public class RoutePointDao {
 
     @PersistenceContext(unitName = "NewPersistenceUnit")
@@ -26,8 +24,7 @@ public class RoutePointDao {
 
     // Find by id
     public RoutePointEntity findRoutePointById(int id) {
-        RoutePointEntity cg = em.find(RoutePointEntity.class, id);
-        return cg;
+        return em.find(RoutePointEntity.class, id);
     }
 
 //    //Get order RP list by order id
@@ -46,28 +43,22 @@ public class RoutePointDao {
     }
 
     //Create
-    public Integer createRoutePoint(RoutePointEntity cg) {
-        em.getTransaction().begin();
-        em.persist(cg);
-        em.getTransaction().commit();
+    public Integer createRoutePoint(RoutePointEntity entity) {
+        em.persist(entity);
 
-        return cg.getId();
+        return entity.getId();
     }
 
     //Update
-    public Integer updateRoutePoint(RoutePointEntity cg) {
-        em.getTransaction().begin();
-        em.persist(cg);
-        em.getTransaction().commit();
+    public Integer updateRoutePoint(RoutePointEntity entity) {
+        em.persist(em.contains(entity) ? entity : em.merge(entity));
 
-        return cg.getId();
+        return entity.getId();
     }
 
     //Delete
-    public void deleteRoutePoint(RoutePointEntity cg) {
-        em.getTransaction().begin();
-        em.remove(cg);
-        em.getTransaction().commit();
+    public void deleteRoutePoint(RoutePointEntity entity) {
+        em.remove(em.contains(entity) ? entity : em.merge(entity));
     }
 
 }

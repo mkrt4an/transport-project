@@ -6,7 +6,7 @@
                                  http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
 
-    <persistence-unit name="NewPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="NewPersistenceUnit" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:/tt</jta-data-source>
 

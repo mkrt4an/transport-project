@@ -4,12 +4,11 @@ import com.mkrt4an.entity.DriverEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- * Created by 123 on 02.10.2016.
- */
 
+@Transactional
 public class DriverDao {
 
     @PersistenceContext(unitName = "NewPersistenceUnit")
@@ -24,36 +23,27 @@ public class DriverDao {
 
     // Find by id
     public DriverEntity findDriverById(int id) {
-        DriverEntity cg = em.find(DriverEntity.class, id);
-        return cg;
+        return em.find(DriverEntity.class, id);
     }
 
     //Get all cargo list
     public List<DriverEntity> getAllDrivers() {
-        List<DriverEntity> cgl;
-        cgl = em.createQuery("select c from DriverEntity c", DriverEntity.class).getResultList();
-        return cgl;
+        return em.createQuery("select c from DriverEntity c", DriverEntity.class).getResultList();
     }
 
     //Create
-    public void createDriver(DriverEntity cg) {
-        em.getTransaction().begin();
-        em.persist(cg);
-        em.getTransaction().commit();
+    public void createDriver(DriverEntity entity) {
+        em.persist(entity);
     }
 
     //Update
-    public void updateDriver(DriverEntity cg) {
-        em.getTransaction().begin();
-        em.persist(cg);
-        em.getTransaction().commit();
+    public void updateDriver(DriverEntity entity) {
+        em.persist(em.contains(entity) ? entity : em.merge(entity));
     }
 
     //Delete
-    public void deleteDriver(DriverEntity cg) {
-        em.getTransaction().begin();
-        em.remove(cg);
-        em.getTransaction().commit();
+    public void deleteDriver(DriverEntity entity) {
+        em.remove(em.contains(entity) ? entity : em.merge(entity));
     }
 
 }

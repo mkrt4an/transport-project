@@ -7,11 +7,8 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- * Created by 123 on 02.10.2016.
- */
 
-
+@Transactional
 public class CargoDao {
 
     @PersistenceContext(unitName = "NewPersistenceUnit")
@@ -26,38 +23,29 @@ public class CargoDao {
 
     // Find by id
     public CargoEntity findCargoById(int id) {
-        CargoEntity cg = em.find(CargoEntity.class, id);
-        return cg;
+        return em.find(CargoEntity.class, id);
     }
 
     //Get all cargo list
     public List<CargoEntity> getAllCargo() {
-        List<CargoEntity> cgl = em.createQuery("select c from CargoEntity c", CargoEntity.class).getResultList();
-        return cgl;
+        return em.createQuery("select c from CargoEntity c", CargoEntity.class).getResultList();
     }
 
     //Create
-    @Transactional
-    public Integer createCargo(CargoEntity cg) {
-        em.getTransaction().begin();
-        em.persist(cg);
-        em.getTransaction().commit();
+    public Integer createCargo(CargoEntity entity) {
+        em.persist(entity);
 
-        return cg.getId();
+        return entity.getId();
     }
 
     //Update
-    public void updateCargo(CargoEntity cg) {
-        em.getTransaction().begin();
-        em.persist(cg);
-        em.getTransaction().commit();
+    public void updateCargo(CargoEntity entity) {
+        em.persist(em.contains(entity) ? entity : em.merge(entity));
     }
 
     //Delete
-    public void deleteCargo(CargoEntity cg) {
-        em.getTransaction().begin();
-        em.remove(cg);
-        em.getTransaction().commit();
+    public void deleteCargo(CargoEntity entity) {
+        em.remove(em.contains(entity) ? entity : em.merge(entity));
     }
 
 }

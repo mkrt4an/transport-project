@@ -4,13 +4,10 @@ import com.mkrt4an.entity.CityEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- * Created by 123 on 02.10.2016.
- */
-
-
+@Transactional
 public class CityDao {
 
     @PersistenceContext(unitName = "NewPersistenceUnit")
@@ -26,40 +23,26 @@ public class CityDao {
 
     // Find by id
     public CityEntity findCityById(int id) {
-        CityEntity cg = em.find(CityEntity.class, id);
-        return cg;
+        return em.find(CityEntity.class, id);
     }
 
     //Get all Order list
     public List<CityEntity> getAllCities() {
-//        EntityManager em = getEntityManager();
-        List<CityEntity> cgl;
-        cgl = em.createQuery("select c from CityEntity c", CityEntity.class).getResultList();
-//        em.close();
-        return cgl;
+        return em.createQuery("select c from CityEntity c", CityEntity.class).getResultList();
     }
 
     //Create
-    public void createCity(CityEntity cg) {
-        em.getTransaction().begin();
-        em.persist(cg);
-        em.getTransaction().commit();
-        System.out.printf("New City is: %s\n", em.find(CityEntity.class, cg.getId()));
+    public void createCity(CityEntity entity) {
+        em.persist(entity);
     }
 
     //Update
-    public void updateCity(CityEntity cg) {
-        em.getTransaction().begin();
-        em.persist(cg);
-        em.getTransaction().commit();
+    public void updateCity(CityEntity entity) {
+        em.persist(em.contains(entity) ? entity : em.merge(entity));
     }
 
     //Delete
-    public void deleteCity(CityEntity cg) {
-        em.getTransaction().begin();
-        em.remove(cg);
-        em.getTransaction().commit();
+    public void deleteCity(CityEntity entity) {
+        em.remove(em.contains(entity) ? entity : em.merge(entity));
     }
-
-
 }
