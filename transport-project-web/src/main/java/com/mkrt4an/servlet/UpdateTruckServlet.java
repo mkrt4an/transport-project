@@ -4,25 +4,29 @@ import com.mkrt4an.dao.CityDao;
 import com.mkrt4an.dao.TruckDao;
 import com.mkrt4an.entity.TruckEntity;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
+//import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 /**
  * Created by 123 on 12.10.2016.
  */
 public class UpdateTruckServlet extends HttpServlet {
+
+    @Inject
+    TruckDao tkd;
+    @Inject
+    CityDao ctd;
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("text/html");
-
-        TruckDao tkd = new TruckDao(getEntityManager());
-        CityDao ctd = new CityDao(getEntityManager());
 
         Integer id = 0;
 

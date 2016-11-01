@@ -7,27 +7,43 @@ import com.mkrt4an.dao.TruckDao;
 import com.mkrt4an.entity.OrderEntity;
 import com.mkrt4an.service.*;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
+//import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 /**
  * Created by 123 on 12.10.2016.
  */
 
 public class UpdateOrderServlet extends HttpServlet {
+
+    @Inject
+    OrderDao ord;
+    @Inject
+    TruckDao tkd;
+    @Inject
+    DriverDao drd;
+    @Inject
+    CargoDao cargoDao;
+
+    @Inject
+    RoutePointService routePointService;
+    @Inject
+    CityService cityService;
+    @Inject
+    OrderService orderService;
+    @Inject
+    TruckService truckService;
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("text/html");
-
-        OrderDao ord = new OrderDao(getEntityManager());
-        TruckDao tkd = new TruckDao(getEntityManager());
-        DriverDao drd = new DriverDao(getEntityManager());
 
         OrderEntity ore;
 
@@ -48,8 +64,8 @@ public class UpdateOrderServlet extends HttpServlet {
             request.setAttribute("truckAll", tkd.getAllTrucks());
             request.setAttribute("driverAll", drd.getAllDrivers());
             request.setAttribute("cargoAll", new CargoService().findAll());
-            request.setAttribute("cityAll", new CityService().findAll());
-            request.setAttribute("orderId", new OrderService().addOrder());
+            request.setAttribute("cityAll", cityService.findAll());
+            request.setAttribute("orderId", orderService.addOrder());
 
 //            request.getRequestDispatcher("/AddOrderStepOne.jsp").forward(request, response);
             request.getRequestDispatcher("/RP.jsp").forward(request, response);
@@ -77,7 +93,7 @@ public class UpdateOrderServlet extends HttpServlet {
         } else if ("/test".equals(url)) {
 
             Integer integer = Integer.parseInt(request.getParameter("id"));
-            CargoDao cargoDao = new CargoDao(getEntityManager());
+//            CargoDao cargoDao = new CargoDao(getEntityManager());
             String name = cargoDao.findCargoById(integer).toString();
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");
@@ -96,7 +112,7 @@ public class UpdateOrderServlet extends HttpServlet {
             String cargoName = request.getParameter("cargoName");
             Integer cargoWeight = Integer.parseInt(request.getParameter("cargoWeight"));
 
-            RoutePointService routePointService = new RoutePointService();
+
 
             if (routePointId == null) {
                 routePointId = routePointService.AddRoutePointBlank(cityId, orderId);
@@ -108,16 +124,16 @@ public class UpdateOrderServlet extends HttpServlet {
             request.setAttribute("routePoint", routePointService.findById(routePointId));
             request.setAttribute("cargoToLoadList", routePointService.findById(routePointId).getCargoToLoadList());
             request.setAttribute("cargoToDeliverList", routePointService.findById(routePointId).getCargoToDeliverList());
-            request.setAttribute("cityAll", new CityService().findAll());
-            request.setAttribute("orderId", new OrderService().findById(orderId).getId());
-            request.setAttribute("cityId", new CityService().findById(cityId).getId());
+            request.setAttribute("cityAll", cityService.findAll());
+            request.setAttribute("orderId", orderService.findById(orderId).getId());
+            request.setAttribute("cityId", cityService.findById(cityId).getId());
 
             request.getRequestDispatcher("/RP.jsp").forward(request, response);
 
 
         } else if ("/route-point".equals(url)) {
 
-            RoutePointService routePointService = new RoutePointService();
+//            RoutePointService routePointService = new RoutePointService();
 
             Integer cityId = Integer.parseInt(request.getParameter("cityId"));
             Integer orderId = Integer.parseInt(request.getParameter("orderId"));
@@ -134,15 +150,15 @@ public class UpdateOrderServlet extends HttpServlet {
             request.setAttribute("routePoint", routePointService.findById(routePointId));
             request.setAttribute("cargoToLoadList", routePointService.findById(routePointId).getCargoToLoadList());
             request.setAttribute("cargoToDeliverList", routePointService.findById(routePointId).getCargoToDeliverList());
-            request.setAttribute("cityAll", new CityService().findAll());
-            request.setAttribute("orderId", new OrderService().findById(orderId).getId());
-            request.setAttribute("cityId", new CityService().findById(cityId).getId());
+            request.setAttribute("cityAll", cityService.findAll());
+            request.setAttribute("orderId", orderService.findById(orderId).getId());
+            request.setAttribute("cityId", cityService.findById(cityId).getId());
 
             request.getRequestDispatcher("/RP.jsp").forward(request, response);
 
         } else if ("/ready".equals(url)) {
 
-            RoutePointService routePointService = new RoutePointService();
+//            RoutePointService routePointService = new RoutePointService();
 
             Integer cityId = Integer.parseInt(request.getParameter("cityId"));
             Integer orderId = Integer.parseInt(request.getParameter("orderId"));
@@ -159,19 +175,19 @@ public class UpdateOrderServlet extends HttpServlet {
             request.setAttribute("routePoint", routePointService.findById(routePointId));
             request.setAttribute("cargoToLoadList", routePointService.findById(routePointId).getCargoToLoadList());
             request.setAttribute("cargoToDeliverList", routePointService.findById(routePointId).getCargoToDeliverList());
-            request.setAttribute("cityAll", new CityService().findAll());
-            request.setAttribute("cityId", new CityService().findById(cityId).getId());
+            request.setAttribute("cityAll", cityService.findAll());
+            request.setAttribute("cityId", cityService.findById(cityId).getId());
 
             request.setAttribute("orderId", orderId);
 //            request.setAttribute("truckAll", orderService.getSuitableTruckList(orderEntity));
-            request.setAttribute("truckAll", new TruckService().findAllTrucks());
+            request.setAttribute("truckAll", truckService.findAllTrucks());
 
 //            request.getRequestDispatcher("/RP.jsp").forward(request, response);
             request.getRequestDispatcher("/AddOrderStepTwo.jsp").forward(request, response);
 
         } else if ("/new-city".equals(url)) {
 
-            RoutePointService routePointService = new RoutePointService();
+//            RoutePointService routePointService = new RoutePointService();
 
             Integer cityId = Integer.parseInt(request.getParameter("cityId"));
             Integer orderId = Integer.parseInt(request.getParameter("orderId"));
@@ -187,9 +203,9 @@ public class UpdateOrderServlet extends HttpServlet {
             request.setAttribute("routePoint", routePointService.findById(routePointId));
             request.setAttribute("cargoToLoadList", routePointService.findById(routePointId).getCargoToLoadList());
             request.setAttribute("cargoToDeliverList", routePointService.findById(routePointId).getCargoToDeliverList());
-            request.setAttribute("cityAll", new CityService().findAll());
-            request.setAttribute("orderId", new OrderService().findById(orderId).getId());
-            request.setAttribute("cityId", new CityService().findById(cityId).getId());
+            request.setAttribute("cityAll", cityService.findAll());
+            request.setAttribute("orderId", orderService.findById(orderId).getId());
+            request.setAttribute("cityId", cityService.findById(cityId).getId());
 
             request.getRequestDispatcher("/RP.jsp").forward(request, response);
         }

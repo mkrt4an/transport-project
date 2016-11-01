@@ -1,12 +1,11 @@
-
 <%@include file="header.jsp" %>
 
 <h1>All drivers page</h1><br>
 
 <table border=1 width=1 cellspacing=2 cellpadding=2>
-<thead>
-</thead>
-<tbody>
+    <thead>
+    </thead>
+    <tbody>
     <tr>
         <th>
             <c:out value="id"/>
@@ -24,7 +23,7 @@
             <c:out value="currentCity"/>
         </th>
         <%--<th>--%>
-            <%--<c:out value="currentTruck"/>--%>
+        <%--<c:out value="currentTruck"/>--%>
         <%--</th>--%>
         <th>
             <c:out value="status"/>
@@ -38,41 +37,41 @@
     </tr>
 
     <c:forEach var="item" items="${list}">
-        <tr>
-            <td>
-                <c:out value="${item.id}"/>
-            </td>
-            <td>
-                <c:out value="${item.firstName}"/>
-            </td>
-            <td>
-                <c:out value="${item.lastName}"/>
-            </td>
-            <td>
-                <c:out value="${item.workedHours}"/>
-            </td>
-            <td>
-                <c:out value="${item.currentCity.name}"/>
-            </td>
+    <tr>
+        <td>
+            <c:out value="${item.id}"/>
+        </td>
+        <td>
+            <c:out value="${item.firstName}"/>
+        </td>
+        <td>
+            <c:out value="${item.lastName}"/>
+        </td>
+        <td>
+            <c:out value="${item.workedHours}"/>
+        </td>
+        <td>
+            <c:out value="${item.currentCity.name}"/>
+        </td>
             <%--<td>--%>
-                <%--<c:out value="${item.currentTruck.regNumber}"/>--%>
+            <%--<c:out value="${item.currentTruck.regNumber}"/>--%>
             <%--</td>--%>
-            <td>
+        <td>
                 <%--<c:out value="${item.status}"/>--%>
-                <c:if test="${item.status == 0}"><c:out value="rest"/></c:if>
-                <c:if test="${item.status == 1}"><c:out value="onduty"/></c:if>
-                <c:if test="${item.status == 2}"><c:out value="drive"/></c:if>
-            </td>
-            <td>
-                <a href=/UpdateDriverServlet?id=${item.id}>update</a>
-            </td>
-            <td>
-                <a href=/DeleteDriverServlet?id=${item.id} onclick="return confirm('Are you sure?')">delete</a>
-            </td>
+            <c:if test="${item.status == 0}"><c:out value="rest"/></c:if>
+            <c:if test="${item.status == 1}"><c:out value="onduty"/></c:if>
+            <c:if test="${item.status == 2}"><c:out value="drive"/></c:if>
+        </td>
+        <td>
+            <a href=/UpdateDriverServlet?id=${item.id}>update</a>
+        </td>
+        <td>
+            <a href=/DeleteDriverServlet?id=${item.id} onclick="return confirm('Are you sure?')">delete</a>
+        </td>
 
-    </c:forEach>
+        </c:forEach>
 
-</tbody>
+    </tbody>
 </table>
 
 <%@include file="footer.jsp" %>

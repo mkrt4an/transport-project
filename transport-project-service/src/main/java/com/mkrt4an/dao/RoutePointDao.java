@@ -4,6 +4,7 @@ import com.mkrt4an.entity.OrderEntity;
 import com.mkrt4an.entity.RoutePointEntity;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class RoutePointDao {
 
+    @PersistenceContext(unitName = "NewPersistenceUnit")
     private EntityManager em;
 
     public RoutePointDao() {

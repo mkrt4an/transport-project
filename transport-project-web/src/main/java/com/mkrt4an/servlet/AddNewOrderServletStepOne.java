@@ -10,6 +10,7 @@ import com.mkrt4an.service.DriverService;
 import com.mkrt4an.service.OrderService;
 import com.mkrt4an.service.TruckService;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,13 @@ import java.util.List;
 
 public class AddNewOrderServletStepOne extends HttpServlet {
 
+    @Inject
+    OrderService orderService;
+    @Inject
+    TruckService truckService;
+    @Inject
+    DriverService driverService;
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -28,9 +36,9 @@ public class AddNewOrderServletStepOne extends HttpServlet {
         String url = request.getServletPath();
 //        Integer orderId = 0;
 
-        OrderService orderService = new OrderService();
-        TruckService truckService = new TruckService();
-        DriverService driverService = new DriverService();
+//        OrderService orderService = new OrderService();
+//        TruckService truckService = new TruckService();
+//        DriverService driverService = new DriverService();
 
 //        OrderEntity orderEntity = null;
 
@@ -48,7 +56,7 @@ public class AddNewOrderServletStepOne extends HttpServlet {
 
             request.setAttribute("orderId", orderId);
 //            request.setAttribute("truckAll", orderService.getSuitableTruckList(orderEntity));
-            request.setAttribute("truckAll", new TruckService().findAllTrucks());
+            request.setAttribute("truckAll", truckService.findAllTrucks());
 
             request.getRequestDispatcher("/AddOrderStepTwo.jsp").forward(request, response);
 

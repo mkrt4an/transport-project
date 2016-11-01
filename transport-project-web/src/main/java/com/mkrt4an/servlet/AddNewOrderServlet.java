@@ -8,6 +8,7 @@ import com.mkrt4an.dao.OrderDao;
 import com.mkrt4an.dao.TruckDao;
 import com.mkrt4an.entity.OrderEntity;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +16,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
+//import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 public class AddNewOrderServlet extends HttpServlet {
+
+    @Inject
+    OrderDao ord;
+    @Inject
+    TruckDao tkd;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,8 +35,8 @@ public class AddNewOrderServlet extends HttpServlet {
         Integer currentTruckId = Integer.parseInt(request.getParameter("currentTruck"));
 //        Integer status = Integer.parseInt(request.getParameter("status"));
 
-        OrderDao ord = new OrderDao(getEntityManager());
-        TruckDao tkd = new TruckDao(getEntityManager());
+//        OrderDao ord = new OrderDao(getEntityManager());
+//        TruckDao tkd = new TruckDao(getEntityManager());
 
         OrderEntity ore = new OrderEntity(uid, status, tkd.findTruckById(currentTruckId));
 

@@ -6,4 +6,6 @@ package com.mkrt4an.service;
 
 public class UserService {
 
+    public UserService() {}
+
 }

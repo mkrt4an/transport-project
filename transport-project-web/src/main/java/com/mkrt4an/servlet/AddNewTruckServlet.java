@@ -8,6 +8,7 @@ import com.mkrt4an.dao.CityDao;
 import com.mkrt4an.dao.TruckDao;
 import com.mkrt4an.entity.TruckEntity;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +16,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
+//import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 public class AddNewTruckServlet extends HttpServlet {
+
+    @Inject
+    TruckDao tkd;
+    @Inject
+    CityDao ctd;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,8 +36,8 @@ public class AddNewTruckServlet extends HttpServlet {
         Integer status = Integer.parseInt(request.getParameter("status"));
         Integer cityId =  Integer.parseInt(request.getParameter("city"));
 
-        TruckDao tkd = new TruckDao(getEntityManager());
-        CityDao ctd = new CityDao(getEntityManager());
+//        TruckDao tkd = new TruckDao(getEntityManager());
+//        CityDao ctd = new CityDao(getEntityManager());
 
         TruckEntity tke;
         tke = new TruckEntity(dutySize, capasity, status, regNumber, ctd.findCityById(cityId));

@@ -3,6 +3,7 @@ package com.mkrt4an.dao;
 import com.mkrt4an.entity.CityEntity;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -11,9 +12,11 @@ import java.util.List;
 
 
 public class CityDao {
+
+    @PersistenceContext(unitName = "NewPersistenceUnit")
     private EntityManager em;
 
-    CityDao() {
+    public CityDao() {
     }
 
     public CityDao(EntityManager em) {

@@ -1,7 +1,9 @@
 package com.mkrt4an.servlet;
 
 import com.mkrt4an.service.OrderService;
+import com.mkrt4an.service.TruckService;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,12 +15,15 @@ import java.io.IOException;
  */
 public class DeleteOrderServlet extends HttpServlet {
 
+    @Inject
+    OrderService orderService;
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("text/html");
 
-        new OrderService().deleteById(request.getParameter("id"));
+        orderService.deleteById(request.getParameter("id"));
 
         request.getRequestDispatcher("/GetAllOrdersServlet").forward(request, response);
     }

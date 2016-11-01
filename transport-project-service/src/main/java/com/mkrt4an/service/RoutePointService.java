@@ -10,11 +10,12 @@ import com.mkrt4an.entity.OrderEntity;
 import com.mkrt4an.entity.RoutePointEntity;
 import org.hibernate.query.NativeQuery;
 
+import javax.inject.Inject;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
+//import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 /**
  * Created by 123 on 02.10.2016.
@@ -22,11 +23,22 @@ import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 public class RoutePointService {
 
+    @Inject
+    OrderDao orderDao;
+    @Inject
+    RoutePointDao routePointDao;
+    @Inject
+    CityDao cityDao;
+    @Inject
+    CargoDao cargoDao;
+
+    public RoutePointService() {}
+
     public Integer AddRoutePointBlank(Integer cityId, Integer orderId) {
 
-        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
-        CityDao cityDao = new CityDao(getEntityManager());
-        OrderDao orderDao = new OrderDao(getEntityManager());
+//        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
+//        CityDao cityDao = new CityDao(getEntityManager());
+//        OrderDao orderDao = new OrderDao(getEntityManager());
 
         RoutePointEntity routePoint = new RoutePointEntity(cityDao.findCityById(cityId), orderDao.findOrderById(orderId));
 
@@ -46,8 +58,8 @@ public class RoutePointService {
 
         RoutePointService routePointService = new RoutePointService();
 
-        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
-        OrderDao orderDao = new OrderDao(getEntityManager());
+//        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
+//        OrderDao orderDao = new OrderDao(getEntityManager());
 
         RoutePointEntity routePoint = new RoutePointEntity( cargoToLoad, cargoToDeliver, ordinal, city, order);
 
@@ -64,8 +76,8 @@ public class RoutePointService {
     public Integer AddCargoToLoadingList(Integer orderId, Integer routePointId,
                                          String cargoName, Integer cargoWeight) {
         //DAO
-        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
-        CargoDao cargoDao = new CargoDao(getEntityManager());
+//        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
+//        CargoDao cargoDao = new CargoDao(getEntityManager());
 
         //Creare CargoEntity
         CargoEntity cargoEntity = new CargoEntity(cargoName, cargoWeight, 0);
@@ -95,8 +107,8 @@ public class RoutePointService {
     public Integer AddCargoToDeliverList(Integer orderId, Integer routePointId,
                                          Integer cargoId) {
         //DAO
-        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
-        CargoDao cargoDao = new CargoDao(getEntityManager());
+//        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
+//        CargoDao cargoDao = new CargoDao(getEntityManager());
 
         RoutePointEntity routePointEntity = routePointDao.findRoutePointById(routePointId);
         CargoEntity cargoEntity = cargoDao.findCargoById(cargoId);
@@ -127,7 +139,7 @@ public class RoutePointService {
                                     CityEntity city,
                                     OrderEntity order) {
 
-        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
+//        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
 
         routePoint.setCargoToLoadList(cargoToLoad);
         routePoint.setCargoToLoadList(cargoToDeliver);
@@ -139,19 +151,19 @@ public class RoutePointService {
     }
 
     public RoutePointEntity findById(String id) {
-        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
+//        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
         return routePointDao.findRoutePointById(Integer.parseInt(id));
     }
 
     public RoutePointEntity findById(Integer id) {
-        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
+//        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
         return routePointDao.findRoutePointById(id);
     }
 
 
     //Find all orders
     public List<RoutePointEntity> findAll() {
-        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
+//        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
         return routePointDao.getAllRoutePoints();
     }
 
@@ -180,7 +192,7 @@ public class RoutePointService {
 
     //Get order RP list by order id
     public List<RoutePointEntity> getOrderRoutePointList(Integer orderId) {
-        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
+//        RoutePointDao routePointDao = new RoutePointDao(getEntityManager());
 
         List<RoutePointEntity> results = new ArrayList<>();
         for(RoutePointEntity routePointEntity : routePointDao.getAllRoutePoints()) {

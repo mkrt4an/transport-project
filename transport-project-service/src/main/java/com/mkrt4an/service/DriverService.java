@@ -1,12 +1,13 @@
 package com.mkrt4an.service;
 
-import com.mkrt4an.dao.DriverDao;
+import com.mkrt4an.dao.*;
 import com.mkrt4an.entity.DriverEntity;
 import com.mkrt4an.entity.RoutePointEntity;
 
+import javax.inject.Inject;
 import java.util.List;
 
-import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
+//import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 /**
  * Created by 123 on 02.10.2016.
@@ -14,29 +15,34 @@ import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 public class DriverService {
 
+    @Inject
+    DriverDao driverDao;
+
+    public DriverService() {}
+
     //Find by id
     public DriverEntity findById(String id) {
-        DriverDao driverDao = new DriverDao(getEntityManager());
+//        DriverDao driverDao = new DriverDao(getEntityManager());
         return driverDao.findDriverById(Integer.parseInt(id));
     }
 
     //Delete by id
     public void deleteById(String id){
-        DriverDao driverDao = new DriverDao(getEntityManager());
+//        DriverDao driverDao = new DriverDao(getEntityManager());
         driverDao.deleteDriver(driverDao.findDriverById(Integer.parseInt(id)));
     }
 
 
     // Find all drivers
     public List<DriverEntity> findAllDrivers() {
-        DriverDao driverDao = new DriverDao(getEntityManager());
+//        DriverDao driverDao = new DriverDao(getEntityManager());
         return driverDao.getAllDrivers() ;
     }
 
 
     //Get driver info
     public String getDriverInfo(Integer driverId) {
-        DriverDao driverDao = new DriverDao(getEntityManager());
+//        DriverDao driverDao = new DriverDao(getEntityManager());
 
         DriverEntity driverEntity  = driverDao.findDriverById(driverId);
 

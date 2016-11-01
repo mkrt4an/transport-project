@@ -1,14 +1,18 @@
 package com.mkrt4an.service;
 
+import com.mkrt4an.dao.CargoDao;
 import com.mkrt4an.dao.CityDao;
+import com.mkrt4an.dao.OrderDao;
+import com.mkrt4an.dao.RoutePointDao;
 import com.mkrt4an.entity.CityEntity;
 import com.mkrt4an.entity.OrderEntity;
 import com.mkrt4an.entity.RoutePointEntity;
 
+import javax.inject.Inject;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
+//import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 /**
  * Created by 123 on 02.10.2016.
@@ -16,11 +20,16 @@ import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 public class CityService {
 
+    @Inject
+    CityDao cityDao;
+
+    public CityService() {}
+
     /**
      * Find all orders
      */
     public List<CityEntity> findAll() {
-        CityDao cityDao = new CityDao(getEntityManager());
+//        CityDao cityDao = new CityDao(getEntityManager());
         return cityDao.getAllCities();
     }
 
@@ -28,7 +37,7 @@ public class CityService {
      * Find by id
      */
     public CityEntity findById(String id) {
-        CityDao cityDao = new CityDao(getEntityManager());
+//        CityDao cityDao = new CityDao(getEntityManager());
         return cityDao.findCityById(Integer.parseInt(id));
     }
 
@@ -36,7 +45,7 @@ public class CityService {
      * Find by id
      */
     public CityEntity findById(Integer id) {
-        CityDao cityDao = new CityDao(getEntityManager());
+//        CityDao cityDao = new CityDao(getEntityManager());
         return cityDao.findCityById(id);
     }
 

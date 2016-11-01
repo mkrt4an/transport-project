@@ -4,20 +4,18 @@ import com.mkrt4an.entity.CargoEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * Created by 123 on 02.10.2016.
  */
 
-//@Stateless
+
 public class CargoDao {
-//    @PersistenceContext(unitName = "DataSourceEx")
+
+    @PersistenceContext(unitName = "NewPersistenceUnit")
     private EntityManager em;
-
-    public static void main(String[] args) {
-
-    }
 
     public CargoDao() {
     }
@@ -39,6 +37,7 @@ public class CargoDao {
     }
 
     //Create
+    @Transactional
     public Integer createCargo(CargoEntity cg) {
         em.getTransaction().begin();
         em.persist(cg);

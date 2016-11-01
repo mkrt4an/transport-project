@@ -4,16 +4,32 @@ package com.mkrt4an.service;
 import com.mkrt4an.dao.*;
 import com.mkrt4an.entity.*;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
+//import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 /**
  * Created by 123 on 02.10.2016.
  */
 
 public class OrderService {
+
+    @Inject
+    OrderDao orderDao;
+    @Inject
+    RoutePointDao routePointDao;
+    @Inject
+    TruckDao truckDao;
+    @Inject
+    CityDao cityDao;
+    @Inject
+    CargoDao cargoDao;
+    @Inject
+    DriverDao driverDao;
+
+    public OrderService() {}
 
     // Exceptions
 //    public class NoSuitableDrversException extends Exception {
@@ -33,7 +49,7 @@ public class OrderService {
      * @return the found entity instance
      */
     public OrderEntity findById(String id) {
-        OrderDao orderDao = new OrderDao(getEntityManager());
+//        OrderDao orderDao = new OrderDao(getEntityManager());
         return orderDao.findOrderById(Integer.parseInt(id));
     }
 
@@ -44,19 +60,19 @@ public class OrderService {
      * @return the found entity instance
      */
     public OrderEntity findById(Integer id) {
-        OrderDao orderDao = new OrderDao(getEntityManager());
+//        OrderDao orderDao = new OrderDao(getEntityManager());
         return orderDao.findOrderById(id);
     }
 
     // Update order
     public void update(OrderEntity orderEntity) {
-        OrderDao orderDao = new OrderDao(getEntityManager());
+//        OrderDao orderDao = new OrderDao(getEntityManager());
         orderDao.updateOrder(orderEntity);
     }
 
     //Find all orders
     public List<OrderEntity> findAll() {
-        OrderDao orderDao = new OrderDao(getEntityManager());
+//        OrderDao orderDao = new OrderDao(getEntityManager());
         return orderDao.getAllOrders();
     }
 
@@ -67,7 +83,7 @@ public class OrderService {
     {
         RoutePointService routePointService = new RoutePointService();
 
-        TruckDao truckDao = new TruckDao(getEntityManager());
+//        TruckDao truckDao = new TruckDao(getEntityManager());
 
         List<TruckEntity> suitableTrucks = new ArrayList<>();
 
@@ -92,7 +108,7 @@ public class OrderService {
     {
         RoutePointService routePointService = new RoutePointService();
 
-        TruckDao truckDao = new TruckDao(getEntityManager());
+//        TruckDao truckDao = new TruckDao(getEntityManager());
 
         List<TruckEntity> suitableTrucks = new ArrayList<>();
 
@@ -115,7 +131,7 @@ public class OrderService {
 //            throws NoSuitableDriversException
     {
 
-        DriverDao driverDao = new DriverDao(getEntityManager());
+//        DriverDao driverDao = new DriverDao(getEntityManager());
 
         List<DriverEntity> suitableDrivetList = new ArrayList<>();
 
@@ -139,7 +155,7 @@ public class OrderService {
     {
         CityService cityService = new CityService();
 
-        DriverDao driverDao = new DriverDao(getEntityManager());
+//        DriverDao driverDao = new DriverDao(getEntityManager());
 
         List<DriverEntity> suitableDrivetList = new ArrayList<>();
 
@@ -199,18 +215,18 @@ public class OrderService {
 //    }
 
     public void deleteOrder(OrderEntity orderEntity) {
-        OrderDao orderDao = new OrderDao(getEntityManager());
+//        OrderDao orderDao = new OrderDao(getEntityManager());
         orderDao.deleteOrder(orderEntity);
     }
 
     public void deleteById(Integer Id) {
-        OrderDao orderDao = new OrderDao(getEntityManager());
+//        OrderDao orderDao = new OrderDao(getEntityManager());
         OrderEntity orderEntity = orderDao.findOrderById(Id);
         orderDao.deleteOrder(orderEntity);
     }
 
     public void deleteById(String Id) {
-        OrderDao orderDao = new OrderDao(getEntityManager());
+//        OrderDao orderDao = new OrderDao(getEntityManager());
         OrderEntity orderEntity = orderDao.findOrderById(Integer.parseInt(Id));
         orderDao.deleteOrder(orderEntity);
     }
@@ -220,7 +236,7 @@ public class OrderService {
     public Integer addOrder() {
 
         // Get DAO
-        OrderDao orderDao = new OrderDao(getEntityManager());
+//        OrderDao orderDao = new OrderDao(getEntityManager());
 
         //Create order entity
         OrderEntity orderEntity = new OrderEntity();

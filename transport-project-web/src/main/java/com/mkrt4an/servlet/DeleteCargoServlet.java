@@ -1,7 +1,9 @@
 package com.mkrt4an.servlet;
 
 import com.mkrt4an.service.CargoService;
+import com.mkrt4an.service.DriverService;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,12 +15,15 @@ import java.io.IOException;
  */
 public class DeleteCargoServlet extends HttpServlet {
 
+    @Inject
+    CargoService cargoService;
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("text/html");
 
-        new CargoService().deleteById(request.getParameter("id"));
+        cargoService.deleteById(request.getParameter("id"));
 
         request.getRequestDispatcher("/GetAllCargoServlet").forward(request, response);
     }

@@ -8,6 +8,7 @@ import com.mkrt4an.service.OrderService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,9 @@ import java.io.IOException;
 
 public class GetAllOrdersServlet extends HttpServlet {
 
+    @Inject
+    OrderService orderService;
+
     static final Logger logger = LogManager.getLogger(GetAllOrdersServlet.class.getName());
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -23,7 +27,7 @@ public class GetAllOrdersServlet extends HttpServlet {
 
         response.setContentType("text/html");
 
-        request.setAttribute("list", new OrderService().findAll());
+        request.setAttribute("list", orderService.findAll());
 
         request.getRequestDispatcher("/GetAllOrders.jsp").forward(request, response);
     }

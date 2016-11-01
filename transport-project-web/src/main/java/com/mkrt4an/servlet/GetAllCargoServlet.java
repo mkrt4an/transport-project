@@ -8,6 +8,7 @@ import com.mkrt4an.service.CargoService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,9 @@ import java.io.IOException;
 
 public class GetAllCargoServlet extends HttpServlet {
 
+    @Inject
+    CargoService cargoService;
+
     static final Logger logger = LogManager.getLogger(GetAllCargoServlet.class.getName());
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -23,7 +27,7 @@ public class GetAllCargoServlet extends HttpServlet {
 
         response.setContentType("text/html");
 
-        request.setAttribute("list", new CargoService().findAll());
+        request.setAttribute("list", cargoService.findAll());
 
         request.getRequestDispatcher("/GetAllCargo.jsp").forward(request, response);
     }

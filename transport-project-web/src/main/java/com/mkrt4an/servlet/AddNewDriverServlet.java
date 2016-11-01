@@ -8,6 +8,7 @@ import com.mkrt4an.dao.CityDao;
 import com.mkrt4an.dao.DriverDao;
 import com.mkrt4an.entity.DriverEntity;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +16,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
+//import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 public class AddNewDriverServlet extends HttpServlet {
+
+    @Inject
+    DriverDao drd;
+    @Inject
+    CityDao ctd;
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,8 +38,8 @@ public class AddNewDriverServlet extends HttpServlet {
         Integer cityId = Integer.parseInt(request.getParameter("city"));
 //        Integer currentTruckId = Integer.parseInt(request.getParameter("currentTruck"));
 
-        DriverDao drd = new DriverDao(getEntityManager());
-        CityDao ctd = new CityDao(getEntityManager());
+//        DriverDao drd = new DriverDao(getEntityManager());
+//        CityDao ctd = new CityDao(getEntityManager());
 //        TruckDao tkd = new TruckDao(getEntityManager());
 
         DriverEntity dre;

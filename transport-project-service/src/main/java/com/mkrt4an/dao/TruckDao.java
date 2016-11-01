@@ -3,6 +3,7 @@ package com.mkrt4an.dao;
 import com.mkrt4an.entity.TruckEntity;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -11,6 +12,7 @@ import java.util.List;
 
 public class TruckDao {
 
+    @PersistenceContext(unitName = "NewPersistenceUnit")
     private EntityManager em;
 
     public TruckDao() {
